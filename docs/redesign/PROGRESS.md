@@ -4,6 +4,8 @@
 
 Added a shared SettingsPrimaryButton to the wallet for Monad challenges, localized in four languages. The existing route and account/database identities are retained. RewardsViewModel builds the authenticated fragment handoff to the new challenge origin; public chain and explorer settings now point to Monad Testnet. Source design/resource/asset checks passed. Native compilation and device capture are tracked in docs/VALIDATION.md.
 
+The wallet interaction/state suite and APK build passed at 602261ed. Visual review exposed a large-balance overflow at 320 dp despite passing semantic assertions. The wallet now uses the existing FitNumber layout for balances and totals, retaining full precision and fitting the unit with the number. Follow-up build/capture evidence is recorded in docs/VALIDATION.md.
+
 ## 2026-10-04 — lag: optimized test APK build (qa) · cached raster images
 
 - User: "아니 렉걸리는데" after #84. Two causes found.

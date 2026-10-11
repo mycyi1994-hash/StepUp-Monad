@@ -1,0 +1,14 @@
+{
+  "kind": "Synthetic GPS fixture testing the deployed API and contract; not a physical run",
+  "chainId": 10143,
+  "challengeId": 5,
+  "escrow": "0xd5d563869cA856114AF80bA3C94df99281ccF005",
+  "sessionId": "cf41bfe5-9095-4edc-9d3c-f4e189fad03d",
+  "distanceMeters": 120,
+  "durationSeconds": 60,
+  "verifierIdempotency": true,
+  "fundingTransaction": "0xd6aa5c36a208591ee084e1fbac83207475d5db7ca76f8ba8c64e5917372df099",
+  "claimTransaction": "0xdc8f9d1d802dd5476621593bd148e5a3d2dad21873213eb22b0efa4dcf2d5e1b",
+  "rewardWei": "1000000000000",
+  "checkedAt": "2026-10-11T05:45:24.411Z"
+}

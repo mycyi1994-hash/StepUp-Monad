@@ -208,19 +208,20 @@ internal fun FitNumber(
     modifier: Modifier = Modifier,
     valueTag: String? = null,
     unitWeight: FontWeight = FontWeight.Medium,
+    valueWeight: FontWeight = FontWeight.ExtraBold,
 ) {
     val measurer = rememberTextMeasurer()
     BoxWithConstraints(modifier) {
         val max = constraints.maxWidth
-        val scale = remember(value, unit, max, valueSize, unitSize) {
-            val v = measurer.measure(value, numberStyle(valueSize, valueColor), maxLines = 1).size.width
+        val scale = remember(value, unit, max, valueSize, unitSize, valueWeight, unitWeight, measurer) {
+            val v = measurer.measure(value, numberStyle(valueSize, valueColor, valueWeight), maxLines = 1).size.width
             val u = unit?.let { measurer.measure(" $it", numberStyle(unitSize, unitColor, unitWeight), maxLines = 1).size.width } ?: 0
             val total = v + u
             if (max == Constraints.Infinity || total <= max || total == 0) 1f else max.toFloat() / total
         }
         Row(verticalAlignment = Alignment.Bottom) {
             Text(
-                value, style = numberStyle(valueSize * scale, valueColor), maxLines = 1, softWrap = false,
+                value, style = numberStyle(valueSize * scale, valueColor, valueWeight), maxLines = 1, softWrap = false,
                 modifier = Modifier.alignByBaseline().then(if (valueTag != null) Modifier.testTag(valueTag) else Modifier),
             )
             if (unit != null) {

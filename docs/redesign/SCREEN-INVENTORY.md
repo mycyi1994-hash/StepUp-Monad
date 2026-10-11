@@ -2,6 +2,8 @@
 
 Source inventory, not completion proof. A function may serve multiple routes/states. All rows require actual runtime review.
 
+Monad edition (2026-10-11): Routes.WALLET adds a localized challenge handoff through the shared settings button. The account/database identities and navigation route remain the same. Wallet balances and totals use the shared fitted-number layout for narrow screens. Current native build and capture evidence is in [VALIDATION.md](../VALIDATION.md).
+
 107 registered navigation routes; 111 screen functions; 11 overlay declarations. These counts are different measures, not completed screens.
 
 ## Routes

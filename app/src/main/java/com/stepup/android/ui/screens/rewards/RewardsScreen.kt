@@ -78,6 +78,7 @@ import com.stepup.android.ui.components.settingsPalette
 import com.stepup.android.ui.experience.feedbackClickable
 import com.stepup.android.ui.theme.StepUpColors
 import com.stepup.android.ui.theme.StepUpDesign
+import com.stepup.android.ui.screens.walk.FitNumber
 import java.time.Instant
 import java.time.Year
 import java.time.ZoneId
@@ -275,19 +276,19 @@ private fun BalanceCard(totals: TotalsLoad) {
             Text(stringResource(R.string.wl_balance), color = RunningPathColors.title, fontSize = 15.sp,
                 modifier = Modifier.paddingFromBaseline(top = 36.dp))
             if (balance != null) {
-                Row(verticalAlignment = Alignment.Bottom, modifier = Modifier.semantics(mergeDescendants = true) {}.testTag("wl-balance")) {
-                    Text(balance, color = RunningPathColors.number, fontSize = size, fontWeight = FontWeight.SemiBold, maxLines = 1,
-                        modifier = Modifier.alignByBaseline().paddingFromBaseline(top = 62.dp))
-                    Spacer(Modifier.width(12.dp))
-                    Text(stringResource(R.string.wl_unit), color = RunningPathColors.unit, fontSize = 19.sp, fontWeight = FontWeight.SemiBold,
-                        modifier = Modifier.alignByBaseline())
-                }
+                FitNumber(
+                    value = balance, unit = stringResource(R.string.wl_unit), valueSize = size, unitSize = 19.sp,
+                    valueColor = RunningPathColors.number, unitColor = RunningPathColors.unit,
+                    valueWeight = FontWeight.SemiBold, unitWeight = FontWeight.SemiBold,
+                    modifier = Modifier.fillMaxWidth().padding(top = 18.dp)
+                        .semantics(mergeDescendants = true) {}.testTag("wl-balance"),
+                )
             } else {
                 Box(Modifier.padding(top = 18.dp).size(width = 170.dp, height = 44.dp).clip(RoundedCornerShape(12.dp))
                     .background(Color(0x33A6BCDD)).testTag("wl-balance-loading"))
             }
             Box(Modifier.padding(top = 16.dp).fillMaxWidth().height(1.dp).background(Color(0x33A6BCDD)))
-            Row(Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 16.dp)) {
+            Row(Modifier.fillMaxWidth().padding(top = 12.dp, bottom = 16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 TotalColumn(stringResource(R.string.wl_earned), ready?.let { amountText(it.earned, signed = false) }, "wl-earned", Modifier.weight(1f))
                 TotalColumn(stringResource(R.string.wl_spent), ready?.let { amountText(it.spent, signed = false) }, "wl-spent", Modifier.weight(1f))
             }
@@ -300,7 +301,9 @@ private fun TotalColumn(label: String, value: String?, tag: String, modifier: Mo
     Column(modifier.semantics(mergeDescendants = true) {}.testTag(tag)) {
         Text(label, color = RunningPathColors.title, fontSize = 13.sp)
         if (value != null) {
-            Text(value, color = RunningPathColors.number, fontSize = 19.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 4.dp))
+            FitNumber(value = value, unit = null, valueSize = 19.sp, unitSize = 19.sp,
+                valueColor = RunningPathColors.number, unitColor = RunningPathColors.unit,
+                valueWeight = FontWeight.SemiBold, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
         } else {
             Box(Modifier.padding(top = 8.dp).size(width = 72.dp, height = 12.dp).clip(RoundedCornerShape(6.dp)).background(Color(0x33A6BCDD)))
         }
