@@ -1,0 +1,6 @@
+# Preserve the source bytes used by the deployed CREATE2 sneaker contract.
+# Solidity metadata includes source hashes, so platform-specific line endings change its address.
+contracts/contracts/*.sol text eol=crlf
+contracts/contracts/Monad*.sol text eol=lf
+*.sh text eol=lf
+gradlew text eol=lf

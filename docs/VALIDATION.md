@@ -10,3 +10,5 @@
 - Cloudflare: challenge worker, D1 database and separate attester deployed.
 
 Pending verification at this revision: Android CI build/device captures, real-device Google sign-in, a physical outdoor GPS-to-claim session and explorer source verification. These are not asserted as completed tests. Final results will be appended when observed.
+
+Initial Linux CI exposed a CREATE2 source-hash difference between Windows CRLF and Linux LF checkout. The deployed source bytes are now pinned in .gitattributes; the deterministic-deployment tests remain enabled to verify reproducibility on CI. Contract behavior was unchanged.
