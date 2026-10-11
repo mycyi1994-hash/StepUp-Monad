@@ -33,24 +33,23 @@ subtask(TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD, async (args, _hre, runSuper) => {
 const DEPLOYER_KEY = process.env.DEPLOYER_PRIVATE_KEY;
 const accounts = DEPLOYER_KEY ? [DEPLOYER_KEY] : [];
 
-// GIWA Sepolia — Upbit/Dunamu의 OP Stack L2 테스트넷 (Ethereum Sepolia 위)
-const GIWA_SEPOLIA_RPC = process.env.GIWA_SEPOLIA_RPC || "https://sepolia-rpc.giwa.io";
-const GIWA_SEPOLIA_CHAIN_ID = 91342;
-const GIWA_SEPOLIA_EXPLORER = "https://sepolia-explorer.giwa.io";
+// Monad is an independent EVM-compatible L1. This build targets its testnet.
+const MONAD_TESTNET_RPC = process.env.MONAD_TESTNET_RPC || "https://testnet-rpc.monad.xyz";
+const MONAD_TESTNET_CHAIN_ID = 10143;
+const MONAD_TESTNET_EXPLORER = "https://testnet.monadscan.com";
 
-// GIWA 메인넷 — 준비 중. RPC가 공개되면 .env로 주입하면 그대로 동작합니다.
-const GIWA_MAINNET_RPC = process.env.GIWA_MAINNET_RPC || "";
-const GIWA_MAINNET_CHAIN_ID = 9134;
-const GIWA_MAINNET_EXPLORER = process.env.GIWA_MAINNET_EXPLORER || "https://explorer.giwa.io";
+// Mainnet is defined for tooling only; all committed deployments use testnet.
+const MONAD_MAINNET_RPC = process.env.MONAD_MAINNET_RPC || 'https://rpc.monad.xyz';
+const MONAD_MAINNET_CHAIN_ID = 143;
+const MONAD_MAINNET_EXPLORER = process.env.MONAD_MAINNET_EXPLORER || "https://monadscan.com";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
-    version: "0.8.28",
+    version: "0.8.29",
     settings: {
       optimizer: { enabled: true, runs: 200 },
-      // OP Stack은 Ecotone(2024-03)부터 Cancun EVM을 켰다. GIWA는 그 이후에
-      // 올라온 체인이라 MCOPY/TSTORE를 쓸 수 있고, OpenZeppelin 5.6도 이를 요구한다.
+      // Cancun bytecode is supported by the target Monad deployment.
       evmVersion: "cancun",
     },
   },
@@ -59,50 +58,45 @@ module.exports = {
     hardhat: {
       chainId: 31337,
     },
-    giwaSepolia: {
-      url: GIWA_SEPOLIA_RPC,
-      chainId: GIWA_SEPOLIA_CHAIN_ID,
+    monadTestnet: {
+      url: MONAD_TESTNET_RPC,
+      chainId: MONAD_TESTNET_CHAIN_ID,
       accounts,
     },
-    giwa: {
-      url: GIWA_MAINNET_RPC,
-      chainId: GIWA_MAINNET_CHAIN_ID,
+    monad: {
+      url: MONAD_MAINNET_RPC,
+      chainId: MONAD_MAINNET_CHAIN_ID,
       accounts,
     },
   },
 
-  // GIWA 익스플로러는 Blockscout이다. Blockscout은 Etherscan 호환 /api를
-  // 제공하므로 hardhat-verify를 그대로 쓸 수 있고, API 키는 필요 없다
-  // (형식상 아무 문자열이나 넣어야 해서 "blockscout"으로 채운다).
+  // Monadscan uses Etherscan API V2 and requires an Etherscan API key.
   etherscan: {
     apiKey: {
-      giwaSepolia: process.env.GIWA_EXPLORER_API_KEY || "blockscout",
-      giwa: process.env.GIWA_EXPLORER_API_KEY || "blockscout",
+      monadTestnet: process.env.MONAD_EXPLORER_API_KEY || "",
+      monad: process.env.MONAD_EXPLORER_API_KEY || "",
     },
     customChains: [
       {
-        network: "giwaSepolia",
-        chainId: GIWA_SEPOLIA_CHAIN_ID,
+        network: "monadTestnet",
+        chainId: MONAD_TESTNET_CHAIN_ID,
         urls: {
-          apiURL: `${GIWA_SEPOLIA_EXPLORER}/api`,
-          browserURL: GIWA_SEPOLIA_EXPLORER,
+          apiURL: "https://api.etherscan.io/v2/api?chainid=10143",
+          browserURL: MONAD_TESTNET_EXPLORER,
         },
       },
       {
-        network: "giwa",
-        chainId: GIWA_MAINNET_CHAIN_ID,
+        network: "monad",
+        chainId: MONAD_MAINNET_CHAIN_ID,
         urls: {
-          apiURL: `${GIWA_MAINNET_EXPLORER}/api`,
-          browserURL: GIWA_MAINNET_EXPLORER,
+          apiURL: "https://api.etherscan.io/v2/api?chainid=143",
+          browserURL: MONAD_MAINNET_EXPLORER,
         },
       },
     ],
   },
 
-  // Sourcify는 GIWA(91342 / 9134)를 아직 모른다. 켜 두면 Blockscout 검증이
-  // 통과한 뒤에도 Sourcify 단계에서 "Failed to send contract verification
-  // request"로 터져, 성공한 검증이 실패로 보고된다. 실제로 CourseRegistry가
-  // 그렇게 나왔다. Blockscout만 쓴다.
+  // Explorer verification is an explicit step, separate from deployment.
   sourcify: {
     enabled: false,
   },

@@ -1,0 +1,44 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stepup-monad",
+  "main": "worker/index.mjs",
+  "compatibility_date": "2026-10-11",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "stepup-monad",
+      "database_id": "af1194bf-9069-40ee-a2d5-66802e45657d",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "APP_ORIGIN": "https://stepup-monad.gana003.workers.dev",
+    "RPC_URL": "https://testnet-rpc.monad.xyz",
+    "SUPABASE_URL": "https://rltvflvnqvknsuayvrnt.supabase.co",
+    "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsdHZmbHZucXZrbnN1YXl2cm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2OTA5MDksImV4cCI6MjEwNzI2NjkwOX0.hds1NxdZ2i7etR9y_z66AIqe09bWhTfsSmLNsFMpNWw"
+  },
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "10243",
+      "simple": {
+        "limit": 30,
+        "period": 60
+      }
+    }
+  ]
+}

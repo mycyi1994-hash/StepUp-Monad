@@ -32,7 +32,7 @@
     <string name="ca_run_km">%1$skm</string>
     <string name="ca_sneaker">신발</string>
     <string name="ca_guide_title">어디서 무엇을 하면 기록되나</string>
-    <string name="ca_guide_intro">실제로 한 일 하나가 기록 최대 하나예요. 2분마다 모아서 보내고, 가스비는 StepUp이 내요(GIWA Sepolia 테스트넷).</string>
+    <string name="ca_guide_intro">실제로 한 일 하나가 기록 최대 하나예요. 2분마다 모아서 보내고, 가스비는 StepUp이 내요(Monad Testnet 테스트넷).</string>
     <string name="ca_guide_run_head">러닝 증명 — 러닝 탭</string>
     <string name="ca_guide_run_body">GPS 경로로 1km 이상 달리고 저장하면. 무효 · 가짜 위치 · 적립 보류 러닝은 빼요. 하루 10건까지.</string>
     <string name="ca_guide_badge_head">배지 — 그 러닝과 함께</string>

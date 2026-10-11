@@ -10,7 +10,7 @@ const fs = require("fs");
 const path = require("path");
 const { ROOT, loadConfig, v3Deployment, workerModule } = require("./lib/v3-deploy");
 
-const network = process.argv[2] || "giwaSepolia";
+const network = process.argv[2] || "monadTestnet";
 const cfg = loadConfig(network);
 const d = v3Deployment(cfg);
 

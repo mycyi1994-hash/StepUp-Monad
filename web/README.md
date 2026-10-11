@@ -20,7 +20,7 @@ Cloudflare Pages 가 이 폴더를 그대로 올린다(빌드 없음). main 에 
 - 홈페이지 5개와 초대 페이지 1개의 기존 다운로드 링크는 비활성화된 출시 준비 버튼이다. Android와 iPhone을 모두 준비 중으로 안내한다. 공개 웹 HTML에는 APK 다운로드 링크가 없다. 기존 테스트 링크를 위해 `downloads/StepUp-MVP.apk`의 `_redirects` 연결은 유지하며, GitHub의 최신 `test-apk`로 보낸다.
 - 변경 내용과 브라우저 검증 범위는 [홈페이지 보고서](../docs/web/HOMEPAGE-VIDEO-2026-09-28.md)에 기록한다.
 
-뽑기 웹 화면은 `npm ci` 후 `npm run build:draw`로 `assets/draw.js`를 만든다. 새 계약 배포 후 `draw-config.js`에 공개 계약 주소, SUP 주소, 추첨 서명 Worker의 HTTPS 주소를 넣고, Android 빌드에 `DRAW_DAPP_URL`과 `DRAW_CONTRACT_ADDRESS`를 설정한다. 이 세 설정과 실제 체인 거래 검증 전에는 앱 버튼을 활성화하지 않는다. 연결은 MetaMask Connect가 모바일 지갑까지 처리하며, 결과는 서명 응답이 아닌 GIWA 거래 영수증의 `Drawn` 이벤트를 읽어 표시한다.
+뽑기 웹 화면은 `npm ci` 후 `npm run build:draw`로 `assets/draw.js`를 만든다. 새 계약 배포 후 `draw-config.js`에 공개 계약 주소, SUP 주소, 추첨 서명 Worker의 HTTPS 주소를 넣고, Android 빌드에 `DRAW_DAPP_URL`과 `DRAW_CONTRACT_ADDRESS`를 설정한다. 이 세 설정과 실제 체인 거래 검증 전에는 앱 버튼을 활성화하지 않는다. 연결은 MetaMask Connect가 모바일 지갑까지 처리하며, 결과는 서명 응답이 아닌 Monad 거래 영수증의 `Drawn` 이벤트를 읽어 표시한다.
 
 ## 서명이 바뀌면
 

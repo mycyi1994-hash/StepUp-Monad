@@ -16,11 +16,11 @@ import {
 
 const config = window.STEPUP_WALLET_CONFIG || {}
 const chain = defineChain({
-  id: Number(config.chainId || 91342),
-  name: Number(config.chainId) === 9134 ? 'GIWA' : 'GIWA Sepolia',
-  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
-  rpcUrls: { default: { http: [config.rpcUrl || 'https://sepolia-rpc.giwa.io'] } },
-  blockExplorers: { default: { name: 'GIWA Explorer', url: config.explorer || 'https://sepolia-explorer.giwa.io' } },
+  id: Number(config.chainId || 10143),
+  name: Number(config.chainId) === 143 ? 'Monad' : 'Monad Testnet',
+  nativeCurrency: { name: 'Monad', symbol: 'MON', decimals: 18 },
+  rpcUrls: { default: { http: [config.rpcUrl || 'https://testnet-rpc.monad.xyz'] } },
+  blockExplorers: { default: { name: 'Monad Explorer', url: config.explorer || 'https://testnet.monadscan.com' } },
 })
 const configured = Boolean(config.supabaseUrl && config.supabaseKey && config.attesterUrl && config.sneakers && config.vault && config.sup)
 const publicClient = createPublicClient({ chain, transport: http(chain.rpcUrls.default.http[0]) })
@@ -401,7 +401,7 @@ async function renderWallet(userId) {
 
 async function main() {
   if (!configured) {
-    app.replaceChildren(card('준비 중', el('p', {}, 'GIWA 연결을 준비하고 있습니다.')))
+    app.replaceChildren(card('준비 중', el('p', {}, 'Monad 연결을 준비하고 있습니다.')))
     return
   }
   const claims = token ? jwtClaims(token) : null

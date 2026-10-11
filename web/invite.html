@@ -52,7 +52,7 @@ p{font-size:15px;line-height:1.7;color:#dfe8ff;margin:0 0 28px;word-break:keep-a
   const crew = match[1].toLowerCase();
   // 카톡 같은 앱 안 브라우저에서도 설치된 앱으로 넘기는 안드로이드 인텐트 주소.
   // 앱이 없으면 fallback 으로 이 페이지에 그대로 남는다.
-  const here = 'https://stepupcrew.com/c/' + crew;
+  const here = 'https://stepup-monad.gana003.workers.dev/c/' + crew;
   open.href = 'intent://stepupcrew.com/c/' + crew +
     '#Intent;scheme=https;package=com.stepup.android;S.browser_fallback_url=' +
     encodeURIComponent(here) + ';end';

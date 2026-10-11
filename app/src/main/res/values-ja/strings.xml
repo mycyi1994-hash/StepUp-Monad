@@ -336,7 +336,7 @@
     <string name="goal_steps_suffix">歩</string>
     <string name="about_version">バージョン</string>
     <string name="about_network">ネットワーク</string>
-    <string name="about_network_value">GIWA チェーン（近日公開）</string>
+    <string name="about_network_value">Monad チェーン（近日公開）</string>
 
     <!-- Analytics -->
     <string name="analytics_title">統計</string>
@@ -384,7 +384,7 @@
     <string name="wallet_web_sign_in">ログインしてからウォレットページを開けます。</string>
     <string name="wallet_web_offline">接続できませんでした。しばらくしてからもう一度お試しください。</string>
     <string name="wallet_withdraw">出金する</string>
-    <string name="wallet_withdraw_title">GIWA チェーンへ出金</string>
+    <string name="wallet_withdraw_title">Monad チェーンへ出金</string>
     <string name="wallet_withdraw_body">オンチェーン決済はメインネットのローンチと同時にスタート。そのとき残高は1:1でそのまま引き継がれます。</string>
     <string name="wallet_withdraw_min">最低出金額 · 1,000 SUP</string>
     <string name="wallet_withdraw_eligible">ローンチしたらすぐ出金できます 🎉</string>
@@ -2523,5 +2523,7 @@ StepUp と走り出そう。</string>
     <string name="crew_policy_approval_long">クルー長が確認してから参加</string>
     <string name="crew_policy_open_long">誰でもすぐに参加</string>
     <!-- crew-cards:end -->
+    <string name="monad_challenges_open">Monad ランニングチャレンジ</string>
+    <string name="monad_challenges_body">アプリで検証されたランで参加。報酬は Monad テストネットで決済されます。</string>
 </resources>
 <!-- Startup preparation failures are retryable, never presented as successful loading. -->

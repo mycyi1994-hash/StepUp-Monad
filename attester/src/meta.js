@@ -85,7 +85,7 @@ export function metadataOf(tokenId, stats, locked, imageBase) {
       'StepUp 러닝 신발. 앱으로 넣으면 신고 달릴 수 있고, 레벨 · 내구도는 앱에서 달라진다. ' +
       'A StepUp running sneaker — deposit it into the app to run with it.',
     image: `${imageBase}${m.file}`,
-    external_url: 'https://stepupcrew.com',
+    external_url: 'https://stepup-monad.gana003.workers.dev',
     attributes,
   }
 }
@@ -114,5 +114,5 @@ export async function sneakerMetadata(env, deps, id, version = '2') {
     if (reverted) throw new HttpError(404, '없는 신발입니다')
     throw new HttpError(503, '잠시 뒤에 다시 해 주세요')
   }
-  return metadataOf(id, stats, locked, env.IMAGE_BASE ?? 'https://stepupcrew.com/assets/sneakers/')
+  return metadataOf(id, stats, locked, env.IMAGE_BASE ?? 'https://stepup-monad.gana003.workers.dev/assets/sneakers/')
 }

@@ -384,14 +384,14 @@ describe("StepUpSneakersV3 — new shoe catalog (0045, 70 models)", () => {
 });
 
 describe("StepUpSneakersV3 — deterministic deployment", () => {
-  // Nick's CREATE2 deployer — a preinstall on OP Stack chains (GIWA included)
+  // Nick's CREATE2 deployer — verified present at this address on Monad Testnet.
   const PROXY = "0x4e59b44847b379578588920cA78FbF26c0B4956C";
   const PROXY_CODE =
     "0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3";
 
   it("the committed worker module deploys the configured contract at the configured address", async () => {
     await network.provider.send("hardhat_setCode", [PROXY, PROXY_CODE]);
-    const cfg = loadConfig("giwaSepolia");
+    const cfg = loadConfig("monadTestnet");
     const d = v3Deployment(cfg);
     const committed = (await import("../../attester/src/v3-deploy.js")).V3_DEPLOYMENTS[cfg.chainId];
     expect(committed.address, "run: node scripts/v3-initcode.js").to.equal(d.address);
@@ -418,6 +418,6 @@ describe("StepUpSneakersV3 — deterministic deployment", () => {
     const toml = fs.readFileSync(path.join(__dirname, "..", "..", "attester", "wrangler.toml"), "utf8");
     const m = toml.match(/^SNEAKERS_V3_ADDRESS\s*=\s*"(0x[0-9a-fA-F]{40})"/m);
     expect(m, "SNEAKERS_V3_ADDRESS in attester/wrangler.toml").to.not.equal(null);
-    expect(m[1]).to.equal(v3Deployment(loadConfig("giwaSepolia")).address);
+    expect(m[1]).to.equal(v3Deployment(loadConfig("monadTestnet")).address);
   });
 });

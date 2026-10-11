@@ -58,7 +58,7 @@ import java.time.ZoneId
  *
  * 특가도 마찬가지다. 아직 마켓이 열리지 않아 실제로 살 수 있는 물건이 없고,
  * 살 수 없는 할인을 띄우는 것은 거짓말이다. 그래서 지금은 "무엇이 언제
- * 열리는지"를 알리는 공지만 둔다 — 지갑의 GIWA 줄과 같은 태도다.
+ * 열리는지"를 알리는 공지만 둔다 — 지갑의 Monad 줄과 같은 태도다.
  */
 data class FeedItem(
     val icon: ImageVector,

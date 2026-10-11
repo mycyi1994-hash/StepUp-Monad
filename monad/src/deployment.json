@@ -1,0 +1,11 @@
+{
+  "chainId": 10143,
+  "escrow": "0xd5d563869cA856114AF80bA3C94df99281ccF005",
+  "verifier": "0x5a776839E96780b8aeB76CdA3f583C83b4030cAD",
+  "rpc": "https://testnet-rpc.monad.xyz",
+  "explorer": "https://testnet.monadscan.com",
+  "transactionHash": "0x4359b3a0e38feb3bee8a6704fee64cfa3ad9fdb6efe4545c21efb74ab40a6a23",
+  "mode": "testnet",
+  "deployedAt": "2026-10-11T04:58:09.224Z",
+  "blockNumber": 70021919
+}

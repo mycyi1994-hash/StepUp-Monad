@@ -74,8 +74,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /** 약관 · 개인정보처리방침 — 기존 주소 그대로. 문서 내용은 앱이 새로 쓰거나 요약하지 않는다 */
-private const val TERMS_URL = "https://stepupcrew.com/terms.html"
-private const val PRIVACY_URL = "https://stepupcrew.com/privacy.html"
+private const val TERMS_URL = "https://stepup-monad.gana003.workers.dev/terms.html"
+private const val PRIVACY_URL = "https://stepup-monad.gana003.workers.dev/privacy.html"
 
 /**
  * 첫 진입 로그인.

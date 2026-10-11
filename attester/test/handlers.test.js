@@ -38,7 +38,7 @@ function fakeDeps({ payload, rpcCalls = [], submitted = [], firstWallet = null }
       return null
     },
     clients: () => ({
-      chain: { id: 91342 },
+      chain: { id: 10143 },
       addresses: { distributor: '0x' + '1'.repeat(40), sneakers: '0x' + '2'.repeat(40) },
       attester,
       sneakerSigner: signer,
@@ -120,7 +120,7 @@ test('작업 실행: 서버 값으로 신발 서명 → 대납 제출 → 제출
   assert.ok(
     await verifyTypedData({
       address: deps.signer.address,
-      domain: releaseDomain(91342, '0x' + '2'.repeat(40)),
+      domain: releaseDomain(10143, '0x' + '2'.repeat(40)),
       types: RELEASE_TYPES,
       primaryType: 'Release',
       message,

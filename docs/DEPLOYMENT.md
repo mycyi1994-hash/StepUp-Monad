@@ -1,0 +1,9 @@
+# Deploy a fresh StepUp Monad environment
+
+1. Create a separate Supabase project and apply supabase/migrations in order. Create a dedicated attester auth user and set economy_settings.attester_user_id to that user's UUID as in migration 0056. Configure native Google ID-token audiences and the website redirect URL. Set the public URL/anon key in Android, wallet-config.js and worker settings.
+2. In contracts, copy .env.example to .env and supply fresh roles. Fund the deployer with test MON. Run npm ci, npm run build and npx hardhat run scripts/deploy-monad.js --network monadTestnet. Keep the generated manifest; the script is resumable and validates deployed code. It writes public addresses into the app configurations.
+3. In attester, set a new worker name, public vars and ALLOWED_ORIGIN. Upload ATTESTER_EMAIL, ATTESTER_PASSWORD, ATTESTER_PRIVATE_KEY, SNEAKER_SIGNER_KEY, RELAYER_PRIVATE_KEY and GUARDIAN_PRIVATE_KEY through wrangler secret put. Deploy using your Cloudflare account. Never put these values in GitHub source.
+4. In monad, create a D1 database, set its ID in wrangler.jsonc, run npx wrangler d1 migrations apply stepup-monad --remote, and upload VERIFIER_PRIVATE_KEY. It must match the escrow verifier. Build web wallet/draw bundles first; npm run build includes them and the shared art. Then deploy with wrangler.
+5. Push source to your repository. Build APK runs native tests and produces a signed test APK; main publishes the monad-testnet prerelease. The bundled debug signing key is for test builds only. Use a private release signing key for a store release.
+
+Committed network configurations target Monad Testnet only. No mainnet funding is required. Keep role keys, Supabase service keys and database passwords in a secret manager, and back them up independently of this source tree.

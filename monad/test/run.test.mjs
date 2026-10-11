@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {verifyTrack,sessionMessage} from '../shared/run.mjs';
+const start=1791676800000;const points=Array.from({length:31},(_,i)=>({lat:37.5+i*.00009,lng:127,at:start+i*5000,accuracy:5}));
+test('measures a plausible run using timestamped GPS',()=>{const r=verifyTrack(points,start,start+150000);assert.ok(r.distanceMeters>299&&r.distanceMeters<302);assert.equal(r.durationSeconds,150);});
+test('rejects teleportation, inaccurate data, future timestamps and replayed old traces',()=>{for(const p of [[...points.slice(0,30),{...points[30],lat:40}],points.map(p=>({...p,accuracy:100})),points.map(p=>({...p,at:p.at+3600000})),points.map(p=>({...p,at:p.at-3600000}))])assert.throws(()=>verifyTrack(p,start,start+150000));});
+test('rejects insufficient coverage and nonfinite coordinates',()=>{assert.throws(()=>verifyTrack(points,start,start+1000000));assert.throws(()=>verifyTrack(points.map(p=>({...p,lng:NaN})),start,start+150000));});
+test('wallet binding includes domain, runner, nonce and challenge',()=>{const a={runner:'0xa',id:'x',nonce:'n',challenge_id:'1',started_at:start};assert.notEqual(sessionMessage('https://one',a),sessionMessage('https://two',a));assert.notEqual(sessionMessage('https://one',a),sessionMessage('https://one',{...a,challenge_id:'2'}));});

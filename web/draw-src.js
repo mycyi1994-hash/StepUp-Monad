@@ -5,11 +5,11 @@ import {
 import { createEVMClient } from '@metamask/connect-evm'
 
 const chain = defineChain({
-  id: 91342,
-  name: 'GIWA Sepolia',
-  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
-  rpcUrls: { default: { http: ['https://sepolia-rpc.giwa.io'] } },
-  blockExplorers: { default: { name: 'GIWA Explorer', url: 'https://sepolia-explorer.giwa.io' } },
+  id: 10143,
+  name: 'Monad Testnet',
+  nativeCurrency: { name: 'Monad', symbol: 'MON', decimals: 18 },
+  rpcUrls: { default: { http: ['https://testnet-rpc.monad.xyz'] } },
+  blockExplorers: { default: { name: 'Monad Explorer', url: 'https://testnet.monadscan.com' } },
 })
 const supAbi = parseAbi([
   'function balanceOf(address) view returns (uint256)',
@@ -49,7 +49,7 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 if (!configured) {
   busy(false)
-  message('GIWA 뽑기 계약이 아직 연결되지 않았습니다.')
+  message('Monad 뽑기 계약이 아직 연결되지 않았습니다.')
 } else {
   message('뽑기를 누르면 지갑 연결이 시작됩니다.')
 }
@@ -109,7 +109,7 @@ async function draw(category) {
     const { provider, account } = await connectWallet()
     await ensureChain(provider)
     const wallet = createWalletClient({ account, chain, transport: custom(provider) })
-    message('GIWA에서 뽑기 조건을 확인하고 있어요…')
+    message('Monad에서 뽑기 조건을 확인하고 있어요…')
     const response = await fetch(`${config.attesterUrl.replace(/\/$/, '')}/draw/authorization`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -147,7 +147,7 @@ async function draw(category) {
       deadline: BigInt(auth.deadline),
     }
     const hash = await wallet.writeContract({ address: contract, abi: drawAbi, functionName: 'drawWithAuth', args: [request, data.signature] })
-    message('GIWA 거래 확인을 기다리고 있어요…')
+    message('Monad 거래 확인을 기다리고 있어요…')
     const receipt = await publicClient.waitForTransactionReceipt({ hash })
     if (receipt.status !== 'success') throw new Error('뽑기 거래가 완료되지 않았습니다.')
     transactionConfirmed = true
@@ -160,7 +160,7 @@ async function draw(category) {
       } catch { /* Another event from the same transaction. */ }
     }
     if (!prize) throw new Error('거래는 확인됐지만 뽑기 결과를 읽지 못했습니다. 탐색기에서 확인해 주세요.')
-    message('GIWA 거래가 확인됐습니다. 상자를 여는 중이에요…')
+    message('Monad 거래가 확인됐습니다. 상자를 여는 중이에요…')
     if (playDrawSound('draw_charge')) await wait(1100)
     if (playDrawSound('draw_box_open')) await wait(750)
     const rarity = Math.max(0, Math.min(3, Number(prize.rarity)))
@@ -172,10 +172,10 @@ async function draw(category) {
     link.href = `${chain.blockExplorers.default.url}/tx/${hash}`
     link.rel = 'noopener noreferrer'
     link.target = '_blank'
-    link.textContent = 'GIWA 거래 보기'
+    link.textContent = 'Monad 거래 보기'
     result.append(title, document.createElement('br'), link)
     result.hidden = false
-    message('GIWA에서 뽑기가 완료됐습니다.')
+    message('Monad에서 뽑기가 완료됐습니다.')
   } catch (error) {
     const rejected = error?.code === 4001 || error?.cause?.code === 4001 ||
       /reject|denied|cancel|거절/i.test(error?.shortMessage || error?.message || '')

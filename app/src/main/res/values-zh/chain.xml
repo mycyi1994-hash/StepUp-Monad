@@ -32,7 +32,7 @@
     <string name="ca_run_km">%1$s 公里</string>
     <string name="ca_sneaker">跑鞋</string>
     <string name="ca_guide_title">在哪里做什么会被记录</string>
-    <string name="ca_guide_intro">你实际完成的一件事最多对应一条记录。每 2 分钟集中发送一次，Gas 费由 StepUp 支付（GIWA Sepolia 测试网）。</string>
+    <string name="ca_guide_intro">你实际完成的一件事最多对应一条记录。每 2 分钟集中发送一次，Gas 费由 StepUp 支付（Monad Testnet 测试网）。</string>
     <string name="ca_guide_run_head">跑步证明 — 跑步页</string>
     <string name="ca_guide_run_body">保存一次用 GPS 测得 1 公里以上的跑步即可。无效、虚拟定位和暂缓的跑步除外。每天最多 10 条。</string>
     <string name="ca_guide_badge_head">徽章 — 随该次跑步</string>

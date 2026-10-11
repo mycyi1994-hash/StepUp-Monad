@@ -13,3 +13,10 @@ local.properties
 /.kotlin/
 /qa-captures/
 __pycache__/
+node_modules/
+.env
+.env.*
+!.env.example
+.secrets.json
+.dev.vars*
+outputs/

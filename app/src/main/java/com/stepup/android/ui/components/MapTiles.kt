@@ -80,7 +80,7 @@ object MapTiles {
         if (mapTilerKey.isNotEmpty()) "© MapTiler © OpenStreetMap contributors" else "© OpenStreetMap contributors"
 
     private val userAgent =
-        "StepUp/${BuildConfig.VERSION_NAME} (Android; +https://stepupcrew.com)"
+        "StepUp/${BuildConfig.VERSION_NAME} (Android; +https://stepup-monad.gana003.workers.dev)"
 
     /**
      * 타일 메모리 캐시 — **개수가 아니라 바이트로** 재는 것이 중요하다.

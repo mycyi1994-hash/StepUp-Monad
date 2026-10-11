@@ -35,7 +35,7 @@ import {
 
 const EAS = '0x4200000000000000000000000000000000000021'
 const REGISTRY = '0x4200000000000000000000000000000000000020'
-const V3 = V3_DEPLOYMENTS[91342].address
+const V3 = V3_DEPLOYMENTS[10143].address
 const RUNNER = '0x' + 'aa'.repeat(32)
 const RUN = '0x' + 'bb'.repeat(32)
 const WALLET = '0x' + '99'.repeat(20)
@@ -73,7 +73,7 @@ function fakeWorld({ claim = [], accept = null, estimate = {}, balance = 10n ** 
   const relayer = privateKeyToAccount(generatePrivateKey())
   const signer = privateKeyToAccount(generatePrivateKey())
   const c = {
-    chain: { id: 91342 },
+    chain: { id: 10143 },
     addresses: { eas: EAS, schemaRegistry: REGISTRY, sneakersV3: V3, sneakers: '0x' + '2'.repeat(40) },
     sneakerSigner: signer,
     relayer: {
@@ -160,7 +160,7 @@ test('보내기: 서명한 거래를 서버에 먼저 적고, 적힌 것만 차�
     assert.equal(it.tx, keccak256(it.raw), '거래 번호 = 서명한 거래의 해시')
     const tx = parseTransaction(it.raw)
     assert.equal(tx.nonce, it.nonce)
-    assert.equal(tx.chainId, 91342)
+    assert.equal(tx.chainId, 10143)
     assert.equal(tx.maxFeePerGas, 300n * 2n + 1_000_000n)
   }
   const easTx = parseTransaction(items[0].raw)
@@ -180,7 +180,7 @@ test('보내기: 서명한 거래를 서버에 먼저 적고, 적힌 것만 차�
   assert.ok(
     await verifyTypedData({
       address: w.signer.address,
-      domain: releaseDomain(91342, V3, '3'),
+      domain: releaseDomain(10143, V3, '3'),
       types: VAULT_MINT_TYPES,
       primaryType: 'VaultMint',
       message,
@@ -291,7 +291,7 @@ test('확인: 확정 · 되돌림 · 죽은 거래 · 다시 보내기 · 확정
   const calls = []
   const rebroadcast = []
   const c = {
-    chain: { id: 91342 },
+    chain: { id: 10143 },
     addresses: { eas: EAS, sneakersV3: V3 },
     relayer: { account: { address: '0x' + '44'.repeat(20) } },
     publicClient: {
@@ -331,7 +331,7 @@ test('확인: 영수증을 못 읽은 것(RPC 오류)은 죽은 거래로 치지
   const rows = [{ job_id: 1, kind: 'RUN_PROOF', nonce: 3, tx_hash: '0x' + 'a1'.repeat(32), raw_tx: '0x01', sent_at: new Date().toISOString() }]
   const calls = []
   const c = {
-    chain: { id: 91342 },
+    chain: { id: 10143 },
     addresses: { eas: EAS },
     relayer: { account: { address: '0x' + '44'.repeat(20) } },
     publicClient: {
@@ -350,7 +350,7 @@ test('확인: 서버가 확정을 받지 않으면(토큰 어긋남) 멈춤을 �
   const rows = [{ job_id: 1, kind: 'VAULT_MINT', nonce: 3, tx_hash: '0x' + 'a1'.repeat(32), raw_tx: '0x01', sent_at: new Date().toISOString() }]
   const calls = []
   const c = {
-    chain: { id: 91342 },
+    chain: { id: 10143 },
     addresses: { eas: EAS, sneakersV3: V3 },
     relayer: { account: { address: '0x' + '44'.repeat(20) } },
     guardian: null,
@@ -374,12 +374,12 @@ test('확인: 서버가 확정을 받지 않으면(토큰 어긋남) 멈춤을 �
 })
 
 test('v3 배포: 설정 주소 · 재료가 맞을 때만, 코드가 없을 때 한 번', async () => {
-  const d = V3_DEPLOYMENTS[91342]
+  const d = V3_DEPLOYMENTS[10143]
   const make = ({ code = '0x', marker = null, address = d.address } = {}) => {
     const sent = []
     const calls = []
     const c = {
-      chain: { id: 91342 },
+      chain: { id: 10143 },
       addresses: { sneakersV3: address },
       relayer: { sendTransaction: async (x) => (sent.push(x), '0x' + 'de'.repeat(32)) },
       publicClient: { getCode: async () => code, getBlockNumber: async () => 10_000n },
@@ -407,7 +407,7 @@ test('v3 배포: 설정 주소 · 재료가 맞을 때만, 코드가 없을 때 
   assert.equal(fresh.sent[0].to, d.proxy)
   assert.equal(fresh.sent[0].data, concat([d.salt, d.initcode]))
   const setAt = fresh.calls.findIndex(([fn]) => fn === 'attester_cursor_set')
-  assert.deepEqual(fresh.calls[setAt][1], { p_name: deployMarker(91342, d.address), p_block: 10000 })
+  assert.deepEqual(fresh.calls[setAt][1], { p_name: deployMarker(10143, d.address), p_block: 10000 })
 
   const waiting = make({ marker: 9_900 })
   assert.equal((await ensureV3({}, waiting.deps, waiting.c)).reason, 'deploying')
@@ -458,7 +458,7 @@ test('꺼내기: 금고로 발행된 v3 신발은 v3 컨트랙트 · v3 서명 �
     getUser: async () => ({ id: 'f1f1f1f1-f1f1-f1f1-f1f1-f1f1f1f1f1f1' }),
     rpc: async (_env, fn) => (fn === 'attester_op_payload' ? [payload] : null),
     clients: () => ({
-      chain: { id: 91342 },
+      chain: { id: 10143 },
       addresses: { sneakers: '0x' + '2'.repeat(40), sneakersV3: V3 },
       sneakerSigner: signer,
       publicClient: { simulateContract: async (x) => ({ request: x }) },
@@ -474,7 +474,7 @@ test('꺼내기: 금고로 발행된 v3 신발은 v3 컨트랙트 · v3 서명 �
   assert.ok(
     await verifyTypedData({
       address: signer.address,
-      domain: releaseDomain(91342, V3, '3'),
+      domain: releaseDomain(10143, V3, '3'),
       types: RELEASE_TYPES,
       primaryType: 'Release',
       message,
@@ -526,7 +526,7 @@ test('두 번째 cron 은 체인 기록 보내기만 한다 — wrangler.toml �
 test('2분 작업: 한 단계가 실패해도 다음 단계는 한다', async () => {
   const calls = []
   const c = {
-    chain: { id: 91342 },
+    chain: { id: 10143 },
     addresses: { eas: null, sneakersV3: null },
     relayer: { account: { address: '0x' + '44'.repeat(20) } },
     publicClient: {},

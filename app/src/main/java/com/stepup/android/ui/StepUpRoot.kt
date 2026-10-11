@@ -1195,6 +1195,16 @@ internal fun MainScaffold(
                 WalletScreen(
                     onBack = { navController.popBackStack() },
                     onOpenChain = { navController.navigate(Routes.CHAIN_ACTIVITY) { launchSingleTop = true } },
+                    onOpenMonad = {
+                        walletScope.launch {
+                            val link = com.stepup.android.ui.screens.rewards.openWalletPageLink(com.stepup.android.BuildConfig.MONAD_CHALLENGES_URL)
+                            if (link is com.stepup.android.ui.screens.rewards.WalletPageLink.Open) {
+                                com.stepup.android.core.ExternalIntents.openUrl(context, link.url)
+                            } else {
+                                android.widget.Toast.makeText(context, context.getString(R.string.wallet_web_sign_in), android.widget.Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    },
                     // 연결 상태 → 뽑기 탭(자동으로 뽑지 않는다)
                     onOpenDraw = { navController.switchTab(Screen.Draw) },
                     // 연결하기 · 지갑 페이지 — 기존 웹 지갑 페이지. 주소를 만들지 못하면(연결) 여기서 알린다

@@ -99,6 +99,7 @@ fun WalletScreen(
     onOpenDraw: () -> Unit = {},
     onOpenWalletPage: () -> Unit = {},
     onOpenChain: () -> Unit = {},
+    onOpenMonad: () -> Unit = {},
     viewModel: RewardsViewModel = viewModel(factory = RewardsViewModel.Factory),
 ) {
     val totals by viewModel.totals.collectAsStateWithLifecycle()
@@ -115,7 +116,7 @@ fun WalletScreen(
         totals = totals, history = history, filter = filter, web3 = web3, status = status,
         onBack = onBack, onFilter = viewModel::setFilter, onLoadMore = viewModel::loadMore,
         onReloadHistory = viewModel::reloadHistory, onReload = viewModel::reload, onRetryWeb3 = viewModel::refreshWeb3,
-        onOpenDraw = onOpenDraw, onOpenWalletPage = onOpenWalletPage, onOpenChain = onOpenChain,
+        onOpenDraw = onOpenDraw, onOpenWalletPage = onOpenWalletPage, onOpenChain = onOpenChain, onOpenMonad = onOpenMonad,
     )
 }
 
@@ -135,6 +136,7 @@ fun WalletContent(
     onOpenDraw: () -> Unit = {},
     onOpenWalletPage: () -> Unit = {},
     onOpenChain: () -> Unit = {},
+    onOpenMonad: () -> Unit = {},
     listState: LazyListState = rememberLazyListState(),
     zone: ZoneId = ZoneId.systemDefault(),
     thisYear: Int = Year.now(zone).value,
@@ -169,6 +171,14 @@ fun WalletContent(
             contentPadding = PaddingValues(start = StepUpDesign.Gutter, end = StepUpDesign.Gutter, top = 4.dp, bottom = 28.dp),
         ) {
             item(key = "balance") { BalanceCard(totals) }
+            item(key = "monad-challenges") {
+                Column(Modifier.fillMaxWidth().padding(vertical = 16.dp)) {
+                    SettingsPrimaryButton(stringResource(R.string.monad_challenges_open), onOpenMonad,
+                        Modifier.fillMaxWidth().testTag("wl-monad-challenges"))
+                    Text(stringResource(R.string.monad_challenges_body), color = p.secondary, fontSize = 12.sp,
+                        modifier = Modifier.padding(top = 8.dp))
+                }
+            }
             item(key = "web3") {
                 Web3Row(
                     web3,

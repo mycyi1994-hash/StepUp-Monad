@@ -335,7 +335,7 @@
     <string name="goal_steps_suffix">步</string>
     <string name="about_version">版本</string>
     <string name="about_network">网络</string>
-    <string name="about_network_value">GIWA 链（即将上线）</string>
+    <string name="about_network_value">Monad 链（即将上线）</string>
 
     <!-- Analytics -->
     <string name="analytics_title">数据</string>
@@ -383,7 +383,7 @@
     <string name="wallet_web_sign_in">请先登录再打开钱包页面。</string>
     <string name="wallet_web_offline">无法连接，请稍后再试。</string>
     <string name="wallet_withdraw">提现</string>
-    <string name="wallet_withdraw_title">提现到 GIWA 链</string>
+    <string name="wallet_withdraw_title">提现到 Monad 链</string>
     <string name="wallet_withdraw_body">链上结算会在主网上线时开放。到那时余额会 1:1 平移过去。</string>
     <string name="wallet_withdraw_min">最低提现 · 1,000 SUP</string>
     <string name="wallet_withdraw_eligible">上线后你就能直接提现啦 🎉</string>
@@ -2522,5 +2522,7 @@
     <string name="crew_policy_approval_long">团长确认后加入</string>
     <string name="crew_policy_open_long">任何人都可直接加入</string>
     <!-- crew-cards:end -->
+    <string name="monad_challenges_open">Monad 跑步挑战</string>
+    <string name="monad_challenges_body">使用应用验证的跑步记录参加挑战。奖励在 Monad 测试网上结算。</string>
 </resources>
 <!-- Startup preparation failures are retryable, never presented as successful loading. -->

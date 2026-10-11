@@ -191,10 +191,10 @@ class RewardsViewModel(private val rewardRepository: RewardRepository) : ViewMod
  * 페이지에서 인증 · 서명 · 확정 대기까지 하는 동안 만료되지 않게, 15분 넘게 남은 토큰을 넘긴다.
  * 새로 받기가 잠깐 실패하면(연결) 지금 토큰이 아직 쓸 만할 때 그것으로 연다.
  */
-suspend fun openWalletPageLink(): WalletPageLink =
+suspend fun openWalletPageLink(baseUrl: String = BuildConfig.WALLET_URL): WalletPageLink =
     when (val token = ServiceLocator.sessionHolder.accessToken(minValiditySeconds = 15 * 60)
         .let { if (it is TokenResult.Unavailable) ServiceLocator.sessionHolder.accessToken() else it }) {
-        is TokenResult.Ok -> WalletPage.url(BuildConfig.WALLET_URL, token.accessToken)
+        is TokenResult.Ok -> WalletPage.url(baseUrl, token.accessToken)
             ?.let { WalletPageLink.Open(it) } ?: WalletPageLink.Offline
         is TokenResult.SignInRequired -> WalletPageLink.SignIn
         is TokenResult.Unavailable -> WalletPageLink.Offline

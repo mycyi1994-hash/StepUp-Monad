@@ -1,0 +1,24 @@
+{
+  "_note": "StepUpSneakersV3 — CREATE2 배포기로 올린다(누가 보내도 같은 주소). 어테스터 워커가 이 주소에 코드가 없으면 한 번 보낸다. 관리자는 생성자에서 정해져 acceptOwnership 이 필요 없다.",
+  "network": "monadTestnet",
+  "chainId": 10143,
+  "address": "0x5DF140781d54Ec75d7Ca947f5D193d02A243aeA6",
+  "proxy": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+  "salt": "0x051d712325aa3bbd133934f2697f3182cb160e609ff96afc8d7f70e3d84ca237",
+  "saltLabel": "StepUpSneakersV3:monadTestnet:1",
+  "roles": {
+    "owner": "0x7c9D77155E2E8Ba2e3d337C2aFc9304c585022ec",
+    "signer": "0xd8F2C5827a4ADc26283ae6CcBF5Bb931374C2877",
+    "guardian": "0xEA51F3982Fa09436545d5C99C17aC454d692a0f5",
+    "curator": "0x60A9E065e351FDd09E794cAFd19849C97349F58a",
+    "treasury": "0x8a978DEe1Fe1e24f331F6D540A2a6206b730fD3D"
+  },
+  "limits": {
+    "maxMintsPerDay": 20000,
+    "maxReleasesPerDay": 500,
+    "maxSyncsPerDay": 20000,
+    "maxGenesisNo": 100000
+  },
+  "baseURI": "https://stepup-monad-attester.gana003.workers.dev/v3/meta/",
+  "models": 52
+}

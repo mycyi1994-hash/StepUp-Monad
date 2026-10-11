@@ -34,9 +34,9 @@ data class TestBuild(
  * 계측 테스트 중에는 끈다 — 에뮬레이터 화면 확인에 알림 창이 끼어들지 않게.
  */
 object TestUpdates {
-    private const val RELEASE = "https://github.com/mycyi1994-hash/StepUp/releases/download/test-apk"
+    private const val RELEASE = "https://github.com/mycyi1994-hash/StepUp-Monad/releases/download/monad-testnet"
     const val INFO_URL = "$RELEASE/StepUp-test.json"
-    const val APK_URL = "$RELEASE/StepUp-test.apk"
+    const val APK_URL = "$RELEASE/StepUp-Monad.apk"
     private const val APK_MIME = "application/vnd.android.package-archive"
 
     sealed interface State {

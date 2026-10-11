@@ -32,7 +32,7 @@
     <string name="ca_run_km">%1$skm</string>
     <string name="ca_sneaker">靴</string>
     <string name="ca_guide_title">どこで何をすると記録されるか</string>
-    <string name="ca_guide_intro">実際に行ったこと1つにつき記録は最大1つです。2分ごとにまとめて送信し、ガス代はStepUpが支払います（GIWA Sepolia テストネット）。</string>
+    <string name="ca_guide_intro">実際に行ったこと1つにつき記録は最大1つです。2分ごとにまとめて送信し、ガス代はStepUpが支払います（Monad Testnet テストネット）。</string>
     <string name="ca_guide_run_head">ラン証明 — ランタブ</string>
     <string name="ca_guide_run_body">GPSで1km以上走って保存すると記録されます。無効・偽の位置・保留中のランは除きます。1日10件まで。</string>
     <string name="ca_guide_badge_head">バッジ — そのランと一緒に</string>

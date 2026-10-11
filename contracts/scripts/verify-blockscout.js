@@ -1,7 +1,7 @@
 /**
  * Blockscout에 소스를 **파일 업로드로** 직접 올린다. hardhat-verify를 거치지 않는다.
  *
- *   npx hardhat run scripts/verify-blockscout.js --network giwaSepolia
+ *   npx hardhat run scripts/verify-blockscout.js --network monadTestnet
  *
  * ## 왜 hardhat-verify로는 안 되는가
  *
@@ -39,7 +39,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const WAF_PAD = " ".repeat(160 * 1024);
 
 function explorerFor(chainId) {
-  return chainId === 91342 ? "https://sepolia-explorer.giwa.io" : "https://explorer.giwa.io";
+  return chainId === 10143 ? "https://testnet.monadscan.com" : "https://monadscan.com";
 }
 
 async function isVerified(explorer, address) {

@@ -335,7 +335,7 @@
     <string name="goal_steps_suffix">걸음</string>
     <string name="about_version">버전</string>
     <string name="about_network">네트워크</string>
-    <string name="about_network_value">GIWA 체인 (준비 중)</string>
+    <string name="about_network_value">Monad 체인 (준비 중)</string>
 
     <!-- Analytics -->
     <string name="analytics_title">통계</string>
@@ -383,7 +383,7 @@
     <string name="wallet_web_sign_in">로그인한 뒤에 지갑 페이지를 열 수 있습니다.</string>
     <string name="wallet_web_offline">연결하지 못했습니다. 잠시 뒤 다시 해 주세요.</string>
     <string name="wallet_withdraw">출금하기</string>
-    <string name="wallet_withdraw_title">GIWA 체인으로 출금</string>
+    <string name="wallet_withdraw_title">Monad 체인으로 출금</string>
     <string name="wallet_withdraw_body">온체인 정산은 메인넷 출시와 함께 열려요. 그때 잔액이 1:1로 그대로 넘어가요.</string>
     <string name="wallet_withdraw_min">최소 출금 · 1,000 SUP</string>
     <string name="wallet_withdraw_eligible">출시되면 바로 출금할 수 있어요 🎉</string>
@@ -2522,5 +2522,7 @@ StepUp과 함께 달려보세요.</string>
     <string name="crew_policy_approval_long">크루장이 확인한 뒤 가입</string>
     <string name="crew_policy_open_long">누구나 바로 가입</string>
     <!-- crew-cards:end -->
+    <string name="monad_challenges_open">Monad 러닝 챌린지</string>
+    <string name="monad_challenges_body">앱에서 검증된 러닝으로 예치된 보상에 도전하세요. 보상은 Monad 테스트넷에서 정산됩니다.</string>
 </resources>
 <!-- Startup preparation failures are retryable, never presented as successful loading. -->

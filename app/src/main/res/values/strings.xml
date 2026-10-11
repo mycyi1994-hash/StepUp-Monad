@@ -337,7 +337,7 @@
     <string name="goal_steps_suffix">steps</string>
     <string name="about_version">Version</string>
     <string name="about_network">Network</string>
-    <string name="about_network_value">GIWA Chain (coming soon)</string>
+    <string name="about_network_value">Monad Chain (coming soon)</string>
 
     <!-- Analytics -->
     <string name="analytics_title">Analytics</string>
@@ -385,7 +385,7 @@
     <string name="wallet_web_sign_in">Sign in first to open the wallet page.</string>
     <string name="wallet_web_offline">Couldn\'t connect. Try again in a moment.</string>
     <string name="wallet_withdraw">Withdraw</string>
-    <string name="wallet_withdraw_title">Withdraw to GIWA Chain</string>
+    <string name="wallet_withdraw_title">Withdraw to Monad Chain</string>
     <string name="wallet_withdraw_body">On-chain settlement opens with the mainnet launch. Your balance carries over 1:1 when it does.</string>
     <string name="wallet_withdraw_min">Minimum withdrawal · 1,000 SUP</string>
     <string name="wallet_withdraw_eligible">You have enough to withdraw at launch 🎉</string>
@@ -2524,5 +2524,7 @@ Start running with StepUp.</string>
     <string name="crew_policy_approval_long">Leader approves each request</string>
     <string name="crew_policy_open_long">Anyone can join right away</string>
     <!-- crew-cards:end -->
+    <string name="monad_challenges_open">Monad running challenges</string>
+    <string name="monad_challenges_body">Complete a funded challenge with a verified app run. Rewards settle on Monad Testnet.</string>
 </resources>
 <!-- Startup preparation failures are retryable, never presented as successful loading. -->

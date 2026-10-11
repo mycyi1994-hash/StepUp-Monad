@@ -1,11 +1,11 @@
 /**
  * 익스플로러의 **Multi-part files** 검증에 올릴 `.sol` 파일들을 뽑아 준다.
  *
- *   npx hardhat run scripts/split-sources.js --network giwaSepolia
+ *   npx hardhat run scripts/split-sources.js --network monadTestnet
  *
  * ## 왜 이게 필요한가
  *
- * Standard JSON Input은 컨트랙트 하나가 185KB짜리 파일 하나다. GIWA 익스플로러는
+ * Standard JSON Input은 컨트랙트 하나가 185KB짜리 파일 하나다. Monad 익스플로러는
  * 그 크기를 스크립트로도 브라우저로도 받지 않았다. 한도가 **요청 전체**가 아니라
  * **파일 하나**에 걸린 것이라면, 같은 내용을 22~32개 파일로 나눠 올리면 통과한다
  * (가장 큰 파일이 35KB).
@@ -29,9 +29,9 @@ async function main() {
   }
 
   const record = JSON.parse(fs.readFileSync(file, "utf8"));
-  const explorer = record.chainId === 91342
-    ? "https://sepolia-explorer.giwa.io"
-    : "https://explorer.giwa.io";
+  const explorer = record.chainId === 10143
+    ? "https://testnet.monadscan.com"
+    : "https://monadscan.com";
 
   const names = Object.keys(record.contracts);
   const buildInfo = await hre.artifacts.getBuildInfo(`contracts/${names[0]}.sol:${names[0]}`);

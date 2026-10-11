@@ -278,7 +278,7 @@ class ShoeUpgradeDesignTest {
         val COMMON_SHOE = shoe(9109, Rarity.COMMON, null, level = 3, number = 52)
 
         val M1 = material(shoe(9121, Rarity.EPIC, 1201, level = 10, number = 21))
-        val M2 = material(shoe(9134, Rarity.LEGENDARY, 1302, level = 1, number = 34))
+        val M2 = material(shoe(143, Rarity.LEGENDARY, 1302, level = 1, number = 34))
         val M3 = material(shoe(9148, Rarity.EPIC, 1202, level = 1, number = 48))
         val M4_EQUIPPED = material(shoe(9150, Rarity.EPIC, 1203, level = 4, number = 50, equipped = true), ForgeMaterialBlock.EQUIPPED)
         val M5_CHAIN = material(shoe(9151, Rarity.EPIC, 1201, level = 2, number = 51), ForgeMaterialBlock.ON_CHAIN)

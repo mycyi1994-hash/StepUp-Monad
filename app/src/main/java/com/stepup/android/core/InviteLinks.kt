@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * 크루 초대 링크 — `https://stepupcrew.com/c/<크루 id>`.
+ * 크루 초대 링크 — `https://stepup-monad.gana003.workers.dev/c/<크루 id>`.
  *
  * 카톡 등에 보낸 링크를 누르면, 앱이 있으면 앱이 바로 열리고(App Links,
  * `web/.well-known/assetlinks.json`), 없으면 같은 주소의 웹페이지가 설치를

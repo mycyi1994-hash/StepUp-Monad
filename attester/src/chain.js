@@ -3,7 +3,7 @@ import { privateKeyToAccount } from 'viem/accounts'
 
 /**
  * 체인 연결. 체인 번호 · RPC · 컨트랙트 주소는 wrangler.toml 의 vars, 키는 Secret 에서 온다.
- * 테스트넷(91342)과 메인넷(9134)은 설정만 다르다.
+ * 테스트넷(10143)과 메인넷(143)은 설정만 다르다.
  */
 
 export const DISTRIBUTOR_ABI = parseAbi([
@@ -90,7 +90,7 @@ export const SNEAKERS_V3_ABI = parseAbi([
   'error EnforcedPause()',
 ])
 
-/** EAS (OP 스택 기본 탑재 0x4200…0021) — 러닝 증명 · 배지 · 코스 완주 */
+/** EAS — independently deployed on Monad for running attestations and badges. */
 export const EAS_ABI = parseAbi([
   'function attest((bytes32 schema, (address recipient, uint64 expirationTime, bool revocable, bytes32 refUID, bytes data, uint256 value) data) request) payable returns (bytes32)',
   'event Attested(address indexed recipient, address indexed attester, bytes32 uid, bytes32 indexed schemaUID)',
@@ -103,7 +103,7 @@ export const EAS_ABI = parseAbi([
   'error WrongSchema()',
 ])
 
-/** EAS 스키마 등록소 (0x4200…0020) */
+/** The schema registry deployed alongside EAS; its address comes from configuration. */
 export const SCHEMA_REGISTRY_ABI = parseAbi([
   'function register(string schema, address resolver, bool revocable) returns (bytes32)',
   'function getSchema(bytes32 uid) view returns ((bytes32 uid, address resolver, bool revocable, string schema))',
@@ -121,8 +121,8 @@ export function chainOf(env) {
   const id = Number(env.CHAIN_ID)
   return defineChain({
     id,
-    name: id === 9134 ? 'GIWA' : 'GIWA Sepolia',
-    nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+    name: id === 143 ? 'Monad' : 'Monad Testnet',
+    nativeCurrency: { name: 'Monad', symbol: 'MON', decimals: 18 },
     rpcUrls: { default: { http: [env.RPC_URL] } },
   })
 }

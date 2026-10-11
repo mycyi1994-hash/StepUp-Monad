@@ -3,7 +3,7 @@ package com.stepup.android.domain
 /**
  * 내 체인 기록 한 줄 — 서버 my_chain_activity(0044).
  *
- * 우리가 가스비를 내고 GIWA Sepolia 에 올리는 기록이다: 러닝 증명 · 코스 완주 · 배지(EAS 증명),
+ * 우리가 가스비를 내고 Monad Testnet 에 올리는 기록이다: 러닝 증명 · 코스 완주 · 배지(EAS 증명),
  * 뽑은 신발 발행 · 강화/수리 반영(v3 신발). 확정되기 전에는 "대기"이고 거래 번호가 없다 —
  * 서버가 확정 블록에서 확인하기 전에는 "기록됨"이라고 쓰지 않는다.
  */
@@ -40,6 +40,6 @@ data class ChainRecord(
 
 /** 체인 기록이 올라가는 곳 */
 object ChainNetwork {
-    const val NAME = "GIWA Sepolia"
-    const val EXPLORER = "https://sepolia-explorer.giwa.io"
+    const val NAME = "Monad Testnet"
+    const val EXPLORER = "https://testnet.monadscan.com"
 }

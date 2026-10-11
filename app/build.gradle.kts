@@ -50,8 +50,8 @@ android {
         applicationId = "com.stepup.android"
         minSdk = 26
         targetSdk = 35
-        versionCode = 25
-        versionName = "1.17.0"
+        versionCode = 26
+        versionName = "2.0.0-monad"
 
         // 러닝 증명을 받을 서버 주소. 배포 전에는 비어 있고, 비어 있으면 앱은
         // 업로드를 시도하지 않고 세션을 대기열에 쌓아 둔다.
@@ -69,8 +69,10 @@ android {
         buildConfigField(
             "String",
             "WALLET_URL",
-            "\"${secret("WALLET_URL", "stepupWalletUrl") ?: "https://stepupcrew.com/wallet.html"}\"",
+            "\"${secret("WALLET_URL", "stepupWalletUrl") ?: "https://stepup-monad.gana003.workers.dev/wallet.html"}\"",
         )
+
+        buildConfigField("String", "MONAD_CHALLENGES_URL", "\"https://stepup-monad.gana003.workers.dev/\"")
 
         // ── 서버·로그인 설정 ────────────────────────────────────────
         //
@@ -84,9 +86,9 @@ android {
         // 값을 먼저 계산해 두는 이유는 buildConfigField 인자 안에서 계산하면
         // 문자열 템플릿이 길어져 읽기도 어렵고 깨지기도 쉽기 때문이다.
         val supabaseUrl = secret("SUPABASE_URL", "stepupSupabaseUrl")
-            ?: "https://pupjzcmybuoyhzfwrsdf.supabase.co"
+            ?: "https://rltvflvnqvknsuayvrnt.supabase.co"
         val supabaseKey = secret("SUPABASE_KEY", "stepupSupabaseKey")
-            ?: "sb_publishable_jt74AKM32zdqnJlsFHEo2g_MNHa-WRO"
+            ?: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsdHZmbHZucXZrbnN1YXl2cm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2OTA5MDksImV4cCI6MjEwNzI2NjkwOX0.hds1NxdZ2i7etR9y_z66AIqe09bWhTfsSmLNsFMpNWw"
 
         // 구글 로그인에는 **웹** 클라이언트 ID 를 쓴다. 안드로이드 클라이언트
         // ID 가 아니다 — 그쪽은 "이 앱이 진짜 맞다"를 구글이 확인하는 용도로

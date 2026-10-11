@@ -17,23 +17,23 @@ class InviteLinksTest {
 
     @Test
     fun `만든 링크를 다시 읽으면 같은 크루다`() {
-        assertEquals("https://stepupcrew.com/c/$id", InviteLinks.crewLink(id))
+        assertEquals("https://stepup-monad.gana003.workers.dev/c/$id", InviteLinks.crewLink(id))
         assertEquals(id, InviteLinks.crewIdOf(InviteLinks.crewLink(id)))
     }
 
     @Test
     fun `www 와 끝의 빗금은 받아 준다`() {
-        assertEquals(id, InviteLinks.crewIdOf("https://www.stepupcrew.com/c/$id/"))
+        assertEquals(id, InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev/c/$id/"))
     }
 
     @Test
     fun `다른 주소 · http · 다른 경로 · 이상한 id 는 받지 않는다`() {
         assertNull(InviteLinks.crewIdOf("https://evil.example/c/$id"))
-        assertNull(InviteLinks.crewIdOf("https://stepupcrew.com.evil.example/c/$id"))
+        assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev.evil.example/c/$id"))
         assertNull(InviteLinks.crewIdOf("http://stepupcrew.com/c/$id"))
-        assertNull(InviteLinks.crewIdOf("https://stepupcrew.com/p/$id"))
-        assertNull(InviteLinks.crewIdOf("https://stepupcrew.com/c/not-a-crew"))
-        assertNull(InviteLinks.crewIdOf("https://stepupcrew.com/c/$id/extra"))
+        assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev/p/$id"))
+        assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev/c/not-a-crew"))
+        assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev/c/$id/extra"))
         assertNull(InviteLinks.crewIdOf(null))
     }
 

@@ -83,7 +83,7 @@ export function sneakerContracts(config) {
   return out
 }
 
-/** [from, to] 를 RPC 한 번에 읽을 수 있는 크기로 나눈다 (GIWA RPC 는 10,000 블록까지) */
+/** [from, to] 를 RPC 한 번에 읽을 수 있는 크기로 나눈다 (Monad RPC 는 10,000 블록까지) */
 export function blockRanges(from, to, size = 9000n) {
   const out = []
   for (let start = BigInt(from); start <= BigInt(to); start += size) {

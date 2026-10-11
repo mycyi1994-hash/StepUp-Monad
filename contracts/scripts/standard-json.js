@@ -1,7 +1,7 @@
 /**
  * 익스플로러에 **손으로** 소스를 올릴 때 필요한 파일을 만들어 준다.
  *
- *   npx hardhat run scripts/standard-json.js --network giwaSepolia
+ *   npx hardhat run scripts/standard-json.js --network monadTestnet
  *
  * ## 왜 필요한가
  *
@@ -28,9 +28,9 @@ async function main() {
   }
 
   const record = JSON.parse(fs.readFileSync(file, "utf8"));
-  const explorer = record.chainId === 91342
-    ? "https://sepolia-explorer.giwa.io"
-    : "https://explorer.giwa.io";
+  const explorer = record.chainId === 10143
+    ? "https://testnet.monadscan.com"
+    : "https://monadscan.com";
 
   const outDir = path.join(__dirname, "..", "verification");
   fs.mkdirSync(outDir, { recursive: true });

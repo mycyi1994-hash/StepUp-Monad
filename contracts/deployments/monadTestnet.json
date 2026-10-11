@@ -1,0 +1,54 @@
+{
+  "chainId": 10143,
+  "network": "Monad Testnet",
+  "contracts": {
+    "MonadChallengeEscrow": "0xd5d563869cA856114AF80bA3C94df99281ccF005",
+    "SUPToken": "0x9a82Fbf7de1cAF6bC07575BD555373BC2eF2578B",
+    "RewardDistributor": "0x44d2d00FB84B2529A093Bd8c6a037362ffAa43d9",
+    "StepUpSneakers": "0x7CcD058dF1C65b96195E54AC88c8887A0096eE9B",
+    "SupVault": "0xdDB78B6B26caD6db34868d7f76522359885d5128",
+    "CourseRegistry": "0x0b18e4110810D1D72E7DeFa4bF8eC7db3E11d035",
+    "SchemaRegistry": "0x5B5740eD96D468fafa6C921fF4752956A282baBB",
+    "EAS": "0x14e7c83634632F10ddC4Da4D6cB07917E73096b3",
+    "StepUpSneakersV3": "0x5DF140781d54Ec75d7Ca947f5D193d02A243aeA6"
+  },
+  "transactions": {
+    "MonadChallengeEscrow": {
+      "hash": "0x4359b3a0e38feb3bee8a6704fee64cfa3ad9fdb6efe4545c21efb74ab40a6a23",
+      "blockNumber": 70021919
+    },
+    "SUPToken": {
+      "hash": "0xdb54411be58e62aae4b7bb21b99371c4222dd3b313f2c8717ab1aa4755edcdb4",
+      "blockNumber": 70021922
+    },
+    "RewardDistributor": {
+      "hash": "0x75c7baecd10680fdada938ee39db558b5d28f148f898fe7489f3c31f26c34fee",
+      "blockNumber": 70021928
+    },
+    "StepUpSneakers": {
+      "hash": "0xb0842411ed0075bbfad7fc5ea0aa0919bef9012e41e112550d92ad53a5d12f0c",
+      "blockNumber": 70021934
+    },
+    "SupVault": {
+      "hash": "0xf36fd314744d67870491fd8b1c711e36dbd01c63b909f285cde404bc1e1c07cf",
+      "blockNumber": 70021937
+    },
+    "CourseRegistry": {
+      "hash": "0xb2dfa6e931f8f0357301fd94b07e044da4e30a7a52474143d41095cc4037416c",
+      "blockNumber": 70021940
+    },
+    "SchemaRegistry": {
+      "hash": "0x23978ea281761f3b83e735505aba5043cf4e89df898ad1a56a0b2c5f632aaa90",
+      "blockNumber": 70021947
+    },
+    "EAS": {
+      "hash": "0xa721c8b5a6cde7f0e1d8cbb942113036d163e111f3c1d0ae6a8febd41dfca690",
+      "blockNumber": 70021953
+    },
+    "StepUpSneakersV3": {
+      "hash": "0xfa49a8a75a3a0f642ee91a0d96eab2f4a0b1f315c3bdef52b598d077ec61127c",
+      "blockNumber": 70021960
+    }
+  },
+  "deployedAt": "2026-10-11T04:58:09.224Z"
+}

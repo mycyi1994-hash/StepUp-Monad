@@ -255,3 +255,7 @@ Mark genuinely inapplicable states with a reason during review. Source detection
 
 Startup: system launch, initialization, logo reveal, login, first-use tour.
 Running: ready, permission denied, acquiring GPS, active, paused, confirm finish, result, pending server reward, reward rejected, restored active session.
+
+## Monad adaptation — 2026-10-11
+
+The existing Wallet route gains a Monad challenge action using shared settings chrome. It opens the challenge website with the signed-in session fragment and creates no new native route. Source checks pass; see ../VALIDATION.md for device evidence.

@@ -32,7 +32,7 @@
     <string name="ca_run_km">%1$s km</string>
     <string name="ca_sneaker">Shoe</string>
     <string name="ca_guide_title">What gets recorded on chain</string>
-    <string name="ca_guide_intro">One thing you actually did is at most one record. StepUp sends them every 2 minutes and pays the gas (GIWA Sepolia testnet).</string>
+    <string name="ca_guide_intro">One thing you actually did is at most one record. StepUp sends them every 2 minutes and pays the gas (Monad Testnet testnet).</string>
     <string name="ca_guide_run_head">Run proof — Running tab</string>
     <string name="ca_guide_run_body">Save a run of 1 km or more measured by GPS. Void, mock-location and held runs are left out. Up to 10 a day.</string>
     <string name="ca_guide_badge_head">Badge — with that run</string>

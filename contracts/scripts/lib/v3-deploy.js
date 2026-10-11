@@ -16,7 +16,7 @@ const { allModels } = require("./catalog");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 
-function loadConfig(network = "giwaSepolia") {
+function loadConfig(network = "monadTestnet") {
   return JSON.parse(fs.readFileSync(path.join(ROOT, "deployments", `${network}-v3.config.json`), "utf8"));
 }
 

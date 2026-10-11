@@ -9,7 +9,7 @@
  * 배포 후 리워드 풀에 SUP를 넣는 것까지 한 번에 처리하고,
  * 결과를 deployments/<network>.json 으로 남긴다(검증 스크립트가 이걸 읽는다).
  *
- *   npx hardhat run scripts/deploy.js --network giwaSepolia
+ *   npx hardhat run scripts/deploy.js --network monadTestnet
  */
 const fs = require("fs");
 const path = require("path");
@@ -50,7 +50,7 @@ async function main() {
   console.log("─".repeat(64));
 
   if (balance === 0n) {
-    throw new Error("배포 계정에 가스가 없습니다. https://faucet.giwa.io 에서 테스트 ETH를 받으세요.");
+    throw new Error("배포 계정에 가스가 없습니다. https://faucet.monad.xyz 에서 테스트 ETH를 받으세요.");
   }
 
   // 1) SUPToken
@@ -126,7 +126,7 @@ async function main() {
   console.log(`  npx hardhat run scripts/verify.js --network ${net}`);
   console.log("");
   console.log("익스플로러에서 확인:");
-  const explorer = chainId === 91342n ? "https://sepolia-explorer.giwa.io" : "https://explorer.giwa.io";
+  const explorer = chainId === 10143n ? "https://testnet.monadscan.com" : "https://monadscan.com";
   for (const [name, c] of Object.entries(record.contracts)) {
     console.log(`  ${name.padEnd(18)} ${explorer}/address/${c.address}`);
   }

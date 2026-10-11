@@ -1,6 +1,6 @@
-name = "stepup-attester"
+name = "stepup-monad-attester"
 main = "src/index.js"
-compatibility_date = "2026-01-01"
+compatibility_date = "2026-10-11"
 compatibility_flags = ["nodejs_compat"]
 # Cloudflare 계정은 적지 않는다. 배포는 `npm run deploy`(scripts/deploy.mjs)로만 한다 — 워커가 도는 계정
 # (workers.dev 이름 gana003)을 찾아 그 계정으로만 올린다. `npx wrangler deploy` 를 그냥 돌리면 로그인한 계정으로
@@ -13,28 +13,28 @@ crons = ["* * * * *", "*/2 * * * *"]
 
 # 공개해도 되는 설정만 여기에. 키는 전부 Secret (아래 목록).
 [vars]
-CHAIN_ID = "91342"
-RPC_URL = "https://sepolia-rpc.giwa.io"
-# v2 배포 (2026-09-25) — contracts/deployments/giwaSepolia-v2.json
-DISTRIBUTOR_ADDRESS = "0x3b99358cE05Ee74e6EaD5c5C799B462f69ac3FE0"
-SNEAKERS_ADDRESS = "0x3Da82CF9d749B0cCcA3DB1b9cA3C68B7c6080019"
-VAULT_ADDRESS = "0x76fDAc77a9fb4Ec6c5Abb96941eFd8D93FBBbd5c"
+CHAIN_ID = "10143"
+RPC_URL = "https://testnet-rpc.monad.xyz"
+# v2 배포 (2026-09-25) — contracts/deployments/monadTestnet-v2.json
+DISTRIBUTOR_ADDRESS = "0x44d2d00FB84B2529A093Bd8c6a037362ffAa43d9"
+SNEAKERS_ADDRESS = "0x7CcD058dF1C65b96195E54AC88c8887A0096eE9B"
+VAULT_ADDRESS = "0xdDB78B6B26caD6db34868d7f76522359885d5128"
 # 배포한 블록 번호. 이 블록부터 이벤트를 읽는다.
-START_BLOCK = "36979816"
-# v3 신발(뽑은 신발을 금고로 발행 · 강화 · 수리 반영) — contracts/deployments/giwaSepolia-v3.json.
+START_BLOCK = "70021928"
+# v3 신발(뽑은 신발을 금고로 발행 · 강화 · 수리 반영) — contracts/deployments/monadTestnet-v3.json.
 # CREATE2 배포기로 이 주소에 올라간다. 코드가 없으면 워커가 한 번 보낸다(src/v3.js).
-SNEAKERS_V3_ADDRESS = "0xf57674209f73E4bA8444a5d75693004eE0e85177"
+SNEAKERS_V3_ADDRESS = "0x5DF140781d54Ec75d7Ca947f5D193d02A243aeA6"
 # v3 이벤트는 이 블록부터 읽는다 — 배포보다 앞선 블록(배포는 이 파일이 올라간 뒤에 한다)
-SNEAKERS_V3_START_BLOCK = "37205000"
-# EAS — OP 스택 기본 탑재(GIWA Sepolia 확인). 러닝 증명 · 배지 · 코스 완주 기록
-EAS_ADDRESS = "0x4200000000000000000000000000000000000021"
-SCHEMA_REGISTRY_ADDRESS = "0x4200000000000000000000000000000000000020"
+SNEAKERS_V3_START_BLOCK = "70021960"
+# EAS and SchemaRegistry are explicitly deployed on Monad; no OP Stack predeploy assumptions.
+EAS_ADDRESS = "0x14e7c83634632F10ddC4Da4D6cB07917E73096b3"
+SCHEMA_REGISTRY_ADDRESS = "0x5B5740eD96D468fafa6C921fF4752956A282baBB"
 # 앱과 같은 Supabase. 이 키는 앱에 들어가는 공개 키다.
-SUPABASE_URL = "https://pupjzcmybuoyhzfwrsdf.supabase.co"
-SUPABASE_ANON_KEY = "sb_publishable_jt74AKM32zdqnJlsFHEo2g_MNHa-WRO"
-ALLOWED_ORIGINS = "https://stepupcrew.com,https://www.stepupcrew.com"
+SUPABASE_URL = "https://rltvflvnqvknsuayvrnt.supabase.co"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJsdHZmbHZucXZrbnN1YXl2cm50Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2OTA5MDksImV4cCI6MjEwNzI2NjkwOX0.hds1NxdZ2i7etR9y_z66AIqe09bWhTfsSmLNsFMpNWw"
+ALLOWED_ORIGINS = "https://stepup-monad.gana003.workers.dev"
 # 신발 그림 — 웹사이트(web/assets/sneakers)
-IMAGE_BASE = "https://stepupcrew.com/assets/sneakers/"
+IMAGE_BASE = "https://stepup-monad.gana003.workers.dev/assets/sneakers/"
 # 새로 붙인 지갑에 보내는 테스트 가스 (0.0002 ETH). 메인넷에서는 0 으로.
 DRIP_WEI = "200000000000000"
 # 체인 기록 — 한 번(2분)에 보내는 수, 릴레이어 잔액이 이 아래면 보내지 않는다(0.003 ETH — 꺼내기 가스비 몫)

@@ -122,7 +122,7 @@ class PlaceSearchApi(
         /** 로케일에 따라 소수점이 쉼표가 되면 주소가 깨진다 */
         private fun coordinate(value: Double): String = String.format(Locale.ROOT, "%.6f", value)
 
-        private val userAgent = "StepUp/${BuildConfig.VERSION_NAME} (Android; +https://stepupcrew.com)"
+        private val userAgent = "StepUp/${BuildConfig.VERSION_NAME} (Android; +https://stepup-monad.gana003.workers.dev)"
 
         private suspend fun download(url: String): String? = withContext(Dispatchers.IO) {
             runCatching {

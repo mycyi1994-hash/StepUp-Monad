@@ -18,7 +18,7 @@
  * 먼저 드라이런(로컬 체인, 가스 0):
  *   npx hardhat run scripts/deploy.js --network hardhat
  * 실제 배포 — 요약을 확인한 뒤 CONFIRM_DEPLOY=yes 를 붙여야만 진행한다:
- *   CONFIRM_DEPLOY=yes npx hardhat run scripts/deploy.js --network giwaSepolia
+ *   CONFIRM_DEPLOY=yes npx hardhat run scripts/deploy.js --network monadTestnet
  *
  * 결과는 deployments/<network>-v2.json 에 남는다. 옛 배포 기록(<network>.json)은 건드리지 않는다.
  */
@@ -107,7 +107,7 @@ async function main() {
     return;
   }
   if (balance === 0n) {
-    throw new Error("배포 계정에 가스가 없습니다. https://faucet.giwa.io 에서 테스트 ETH 를 받으세요.");
+    throw new Error("배포 계정에 가스가 없습니다. https://faucet.monad.xyz 에서 테스트 ETH 를 받으세요.");
   }
 
   const deploy = async (name, args) => {

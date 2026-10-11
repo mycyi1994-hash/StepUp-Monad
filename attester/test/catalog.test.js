@@ -12,7 +12,7 @@ import { executeOp } from '../src/handlers.js'
 import { metadataOf } from '../src/meta.js'
 import { runJobs } from '../src/jobs.js'
 
-const V3 = V3_DEPLOYMENTS[91342].address
+const V3 = V3_DEPLOYMENTS[10143].address
 const WALLET = '0x' + '99'.repeat(20)
 const ROOT = new URL('../../', import.meta.url)
 const read = (path) => fs.readFileSync(new URL(path, ROOT), 'utf8')
@@ -87,7 +87,7 @@ test('지갑 선물: 새 모델 신발은 v3 컨트랙트 · v3 서명 영역으
     getUser: async () => ({ id: 'f1f1f1f1-f1f1-f1f1-f1f1-f1f1f1f1f1f1' }),
     rpc: async (_env, fn) => (fn === 'attester_op_payload' ? [payload] : null),
     clients: () => ({
-      chain: { id: 91342 },
+      chain: { id: 10143 },
       addresses: { sneakers: '0x' + '2'.repeat(40), sneakersV3: V3 },
       sneakerSigner: signer,
       publicClient: { simulateContract: async (x) => ({ request: x }) },
@@ -104,7 +104,7 @@ test('지갑 선물: 새 모델 신발은 v3 컨트랙트 · v3 서명 영역으
   assert.ok(
     await verifyTypedData({
       address: signer.address,
-      domain: releaseDomain(91342, V3, '3'),
+      domain: releaseDomain(10143, V3, '3'),
       types: RELEASE_TYPES,
       primaryType: 'Release',
       message,
@@ -120,7 +120,7 @@ test('v3 도감 추가: 없는 모델만 한 거래로, 표시를 먼저 남기�
     const calls = []
     const reads = []
     const c = {
-      chain: { id: 91342 },
+      chain: { id: 10143 },
       addresses: { sneakersV3: V3 },
       relayer: { writeContract: async (x) => (calls.push(['send']), sent.push(x), '0x' + 'cd'.repeat(32)) },
       publicClient: {
@@ -154,7 +154,7 @@ test('v3 도감 추가: 없는 모델만 한 거래로, 표시를 먼저 남기�
   assert.deepEqual(rarities, models.map((id) => ['COMMON', 'RARE', 'EPIC', 'LEGENDARY'].indexOf(SHOE_MODELS[id].rarity)))
   const setAt = none.calls.findIndex(([fn]) => fn === 'attester_cursor_set')
   assert.ok(setAt >= 0 && setAt < none.calls.findIndex(([fn]) => fn === 'send'), '표시를 먼저')
-  assert.deepEqual(none.calls[setAt][1], { p_name: catalogMarker(91342, V3), p_block: 20000 })
+  assert.deepEqual(none.calls[setAt][1], { p_name: catalogMarker(10143, V3), p_block: 20000 })
 
   const waiting = make({ marker: 20_000 - Number(CATALOG_WAIT_BLOCKS) + 1 })
   assert.equal((await ensureCatalog({}, waiting.deps, waiting.c)).reason, 'adding models')
@@ -166,7 +166,7 @@ test('v3 도감 추가: 없는 모델만 한 거래로, 표시를 먼저 남기�
 
 test('2분 작업: v3 도감이 다 들어가기 전에는 v3 일(금고 발행 · 갱신)을 보내지 않는다', async () => {
   const c = {
-    chain: { id: 91342 },
+    chain: { id: 10143 },
     addresses: { eas: null, sneakersV3: V3 },
     relayer: { account: { address: '0x' + '44'.repeat(20) }, writeContract: async () => '0x' + 'cd'.repeat(32) },
     publicClient: {
