@@ -12,6 +12,14 @@
 
 **Links:** [Live app](https://stepup-monad.gana003.workers.dev) · [Source](https://github.com/mycyi1994-hash/StepUp-Monad) · [Android APK](https://github.com/mycyi1994-hash/StepUp-Monad/releases/download/monad-testnet/StepUp-Monad.apk) · [Escrow](https://testnet.monadscan.com/address/0xd5d563869cA856114AF80bA3C94df99281ccF005)
 
+**Recommended track:** Consumer Products & Payments. The sponsor funds a group activity and runners receive verifiable small payouts; lead the presentation with that experience. The [official Metropolis page](https://monad.xyz/developers/hackathons/metropolis), checked 11 October 2026, lists a 13 October deadline and asks for a working product, demo, short write-up and code link. Confirm the exact cutoff time in the application platform. Existing projects are allowed when the submitted work was built during the event window; use BUILD-RECORD.md to identify that work.
+
+## Proposed first pilot
+
+Recruit one local running crew and one sponsor for a four-week trial. The sponsor commits each week's pool before runners start. Measure funded challenges, eligible runs, successful claims, repeated participation and the organizer's time spent on payouts. No crew, sponsor, user count or pilot result is claimed yet.
+
+The business hypothesis is paid organizer tooling or a disclosed sponsor service fee. The current contract charges no protocol fee. Prove that organizers value verified reward settlement before introducing fees or mainnet assets; participants should understand that this build uses test tokens. The next product work is real-device validation, a clearer onboarding flow and stronger activity verification.
+
 ## Three-minute demonstration
 
 1. 0:00–0:25: Show the funded pool and explain the crew reward problem.

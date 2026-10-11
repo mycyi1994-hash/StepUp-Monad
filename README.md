@@ -22,6 +22,12 @@ The challenge escrow, SUP rewards, two sneaker contract generations, vault, cour
 
 Android retains running history, sneaker collection, crews, events and the SUP wallet. The new challenge path connects running activity to a pre-funded MON reward. Mystery draw on-chain purchase is disabled until a separate draw deployment is configured; its existing collection UI remains available.
 
+Native wallet on Android 15 (test fixture balances):
+
+<img src="docs/screenshots/android-wallet.png" width="270" alt="StepUp Android wallet with the Monad running challenges button">
+
+See [validation evidence](docs/VALIDATION.md) for builds, responsive captures and actual testnet claim receipts.
+
 ## Trust and limits
 
 The verifier checks GPS accuracy, timestamp continuity, speed and distance before issuing an EIP-712 proof. Native proofs additionally require an authenticated clean session created after the challenge. This is a centralized, fallible verifier, not a cryptographic proof of physical activity; location spoofing and rooted devices remain risks. The contract independently enforces funding, recipient, deadline and replay protection. Sponsor refunds unlock after the challenge and claim grace period.
