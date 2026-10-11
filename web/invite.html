@@ -38,8 +38,8 @@ p{font-size:15px;line-height:1.7;color:#dfe8ff;margin:0 0 28px;word-break:keep-a
   <h1>크루에서 당신을<br>기다리고 있어요 👟</h1>
   <p>StepUp 앱에서 크루 화면이 열려요.<br>들어와서 같이 달려요.</p>
   <a class="button primary" id="open-app" href="/">StepUp 앱에서 열기</a>
-  <button class="button secondary" type="button" disabled>앱 출시 준비 중</button>
-  <p class="note">Android와 iPhone 버전을 준비하고 있어요.</p>
+  <a class="button secondary" href="https://github.com/mycyi1994-hash/StepUp-Monad/releases/download/monad-testnet/StepUp-Monad.apk">Android 테스트 앱 받기</a>
+  <p class="note">Monad Testnet 데모입니다. 테스트 토큰은 금전적 가치가 없습니다.</p>
 </main>
 <script>
 (() => {
@@ -53,7 +53,7 @@ p{font-size:15px;line-height:1.7;color:#dfe8ff;margin:0 0 28px;word-break:keep-a
   // 카톡 같은 앱 안 브라우저에서도 설치된 앱으로 넘기는 안드로이드 인텐트 주소.
   // 앱이 없으면 fallback 으로 이 페이지에 그대로 남는다.
   const here = 'https://stepup-monad.gana003.workers.dev/c/' + crew;
-  open.href = 'intent://stepupcrew.com/c/' + crew +
+  open.href = 'intent://stepup-monad.gana003.workers.dev/c/' + crew +
     '#Intent;scheme=https;package=com.stepup.android;S.browser_fallback_url=' +
     encodeURIComponent(here) + ';end';
 })();

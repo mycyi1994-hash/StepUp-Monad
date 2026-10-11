@@ -22,13 +22,15 @@ class InviteLinksTest {
     }
 
     @Test
-    fun `www 와 끝의 빗금은 받아 준다`() {
+    fun `끝의 빗금은 받아 준다`() {
         assertEquals(id, InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev/c/$id/"))
     }
 
     @Test
     fun `다른 주소 · http · 다른 경로 · 이상한 id 는 받지 않는다`() {
         assertNull(InviteLinks.crewIdOf("https://evil.example/c/$id"))
+        assertNull(InviteLinks.crewIdOf("https://stepupcrew.com/c/$id"))
+        assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev:444/c/$id"))
         assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev.evil.example/c/$id"))
         assertNull(InviteLinks.crewIdOf("http://stepupcrew.com/c/$id"))
         assertNull(InviteLinks.crewIdOf("https://stepup-monad.gana003.workers.dev/p/$id"))

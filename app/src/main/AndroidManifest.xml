@@ -65,8 +65,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
-                <data android:host="stepupcrew.com" />
-                <data android:host="www.stepupcrew.com" />
+                <data android:host="stepup-monad.gana003.workers.dev" />
                 <data android:pathPrefix="/c/" />
             </intent-filter>
         </activity>

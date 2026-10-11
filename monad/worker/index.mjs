@@ -12,7 +12,9 @@ async function body(request) {
   const all=new Uint8Array(size);let offset=0;for(const chunk of chunks){all.set(chunk,offset);offset+=chunk.length;}return JSON.parse(new TextDecoder().decode(all));
 }
 export default {async fetch(request,env) {
-  const url=new URL(request.url);if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
+  const url=new URL(request.url);
+  if(/^\/c\/[0-9a-fA-F-]{36}\/?$/.test(url.pathname))return env.ASSETS.fetch(new Request(new URL('/invite.html',url),request));
+  if(!url.pathname.startsWith('/api/'))return env.ASSETS.fetch(request);
   if(request.method==='GET'&&url.pathname==='/api/config')return json({...deployment,app:'StepUp on Monad',gpsPrivacy:'Raw coordinates are validated in memory and are not stored. Only distance, duration, signature and session ID are retained.'});
   if(!['GET','POST'].includes(request.method))return json({error:'Method not allowed'},405);
   if(request.method==='POST'&&request.headers.get('Origin')!==env.APP_ORIGIN&&request.headers.get('Origin')!==url.origin)return json({error:'Origin not allowed'},403);

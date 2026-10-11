@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
  */
 object InviteLinks {
 
-    const val HOST = "stepupcrew.com"
+    const val HOST = "stepup-monad.gana003.workers.dev"
 
     private val UUID = Regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
 
@@ -41,7 +41,7 @@ object InviteLinks {
     fun crewIdOf(url: String?): String? {
         val uri = runCatching { java.net.URI(url ?: return null) }.getOrNull() ?: return null
         if (uri.scheme != "https") return null
-        if (uri.host != HOST && uri.host != "www.$HOST") return null
+        if (uri.host != HOST || uri.rawUserInfo != null || uri.port != -1) return null
         val parts = uri.path.orEmpty().trim('/').split('/')
         if (parts.size != 2 || parts[0] != "c") return null
         return parts[1].takeIf { UUID.matches(it) }?.lowercase()
