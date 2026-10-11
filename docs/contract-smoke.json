@@ -1,0 +1,12 @@
+{
+  "kind": "Synthetic contract integration test; not a physical run or verifier acceptance test",
+  "chainId": 10143,
+  "challengeId": 4,
+  "escrow": "0xd5d563869cA856114AF80bA3C94df99281ccF005",
+  "fundingTransaction": "0x2a10e3220310c97d23a59c0e94d3cad4b56c47d2d6ea63ced286f68a7e48c0e3",
+  "claimTransaction": "0xfd382fbf9bf8903f6aefd37cc39ece9133273a3ace70ce3cd31d8b6306ce36bb",
+  "rewardWei": "1000000000000",
+  "claimed": 1,
+  "remainingWei": "0",
+  "checkedAt": "2026-10-11T05:25:24.200Z"
+}

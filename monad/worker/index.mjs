@@ -2,6 +2,7 @@ import {createPublicClient,http,isAddress,verifyMessage,keccak256,toHex} from 'v
 import {privateKeyToAccount} from 'viem/accounts';
 import {monad,abi} from '../shared/chain.mjs';
 import {verifyTrack,sessionMessage,proofTypes,nativeRunMessage} from '../shared/run.mjs';
+import {findChallengeStart,validateNativeRun} from '../shared/challenge-start.mjs';
 import deployment from '../src/deployment.json';
 const json=(v,status=200)=>Response.json(v,{status,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 async function body(request) {
@@ -34,11 +35,9 @@ export default {async fetch(request,env) {
       const message=nativeRunMessage(env.APP_ORIGIN,user.id,input.runId,input.challengeId,input.runner);
       if(!(await verifyMessage({address:input.runner,message,signature:input.signature})))return json({error:'Wallet signature does not match this app run.'},401);
       const c=await client.readContract({address:deployment.escrow,abi,functionName:'challenges',args:[BigInt(input.challengeId)]});
-      if(Date.now()>Number(c[2])*1000||run.distance_meters<c[3]||run.duration_sec<30||c[5]>=c[4])throw new Error('This run does not meet an active challenge.');
-      // Bind native eligibility to the challenge creation block: historical runs cannot farm new pools.
-      const events=await client.getContractEvents({address:deployment.escrow,abi,eventName:'ChallengeCreated',args:{id:BigInt(input.challengeId)},fromBlock:BigInt(deployment.blockNumber||0),toBlock:'latest'});
-      if(!events[0])throw new Error('Challenge creation receipt unavailable.');const block=await client.getBlock({blockNumber:events[0].blockNumber});
-      if(Date.parse(run.started_at)<Number(block.timestamp)*1000)throw new Error('The run must start after this challenge was created.');
+      let created=await env.DB.prepare('SELECT created_at FROM challenge_start WHERE contract=? AND challenge_id=?').bind(deployment.escrow,String(input.challengeId)).first();
+      if(!created){const found=await findChallengeStart(client,{address:deployment.escrow,abi,deploymentBlock:deployment.blockNumber,id:input.challengeId});await env.DB.prepare('INSERT OR IGNORE INTO challenge_start(contract,challenge_id,block_number,created_at) VALUES(?,?,?,?)').bind(deployment.escrow,String(input.challengeId),found.blockNumber,found.timestamp).run();created={created_at:found.timestamp};}
+      validateNativeRun(run,{targetMeters:c[3],endsAt:Number(c[2]),claimed:c[5],slots:c[4]},created.created_at);
       const signer=privateKeyToAccount(env.VERIFIER_PRIVATE_KEY);if(signer.address.toLowerCase()!==deployment.verifier.toLowerCase())throw new Error('Verifier configuration mismatch.');
       const proof={challengeId:String(input.challengeId),runner:input.runner,sessionId:keccak256(toHex(`native:${user.id}:${run.id}`)),distanceMeters:Math.floor(run.distance_meters),durationSeconds:run.duration_sec,deadline:Number(c[2])+86400};
       const signature=await signer.signTypedData({domain:{name:'StepUpMonadChallenge',version:'1',chainId:10143,verifyingContract:deployment.escrow},types:proofTypes,primaryType:'RunProof',message:proof});return json({proof,signature});
