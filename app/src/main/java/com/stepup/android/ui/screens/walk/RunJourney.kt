@@ -214,10 +214,23 @@ internal fun FitNumber(
     BoxWithConstraints(modifier) {
         val max = constraints.maxWidth
         val scale = remember(value, unit, max, valueSize, unitSize, valueWeight, unitWeight, measurer) {
-            val v = measurer.measure(value, numberStyle(valueSize, valueColor, valueWeight), maxLines = 1).size.width
-            val u = unit?.let { measurer.measure(" $it", numberStyle(unitSize, unitColor, unitWeight), maxLines = 1).size.width } ?: 0
-            val total = v + u
-            if (max == Constraints.Infinity || total <= max || total == 0) 1f else max.toFloat() / total
+            fun width(ratio: Float): Int {
+                val v = measurer.measure(value, numberStyle(valueSize * ratio, valueColor, valueWeight), softWrap = false).size.width
+                val u = unit?.let { measurer.measure(" $it", numberStyle(unitSize * ratio, unitColor, unitWeight), softWrap = false).size.width } ?: 0
+                return v + u
+            }
+            // Re-measure the fitted font: glyph hinting and font scaling are not
+            // perfectly linear. Leave a few physical pixels for edge rounding.
+            val available = (max - 4).coerceAtLeast(0)
+            if (max == Constraints.Infinity || width(1f) <= available) 1f else {
+                var low = 0f
+                var high = 1f
+                repeat(10) {
+                    val mid = (low + high) / 2f
+                    if (width(mid) <= available) low = mid else high = mid
+                }
+                low
+            }
         }
         Row(verticalAlignment = Alignment.Bottom) {
             Text(

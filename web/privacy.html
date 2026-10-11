@@ -23,13 +23,14 @@
 
 <header><div class="wrap">
   <h1>개인정보처리방침</h1>
-  <div class="meta">StepUp 앱·웹사이트 · 시행일 2026-09-30</div>
+  <div class="meta">StepUp 앱·웹사이트 · 시행일 2026-10-11</div>
   <div class="lang"><a class="on" href="#ko">한국어</a><a href="#en">English</a></div>
 </div></header>
 
 <main><div class="wrap">
 
 <section id="ko">
+<div class="note"><p><strong>Monad 테스트넷 빌드.</strong> 이 배포는 별도 Supabase 프로젝트를 사용하며 사전 등록을 받지 않습니다. 브라우저 GPS 좌표는 거리 검증 중 메모리에서 처리하고 D1에 저장하지 않습니다. D1에는 지갑 주소, 챌린지·세션 ID, 시각, 거리·시간, 서명 증명을 저장합니다. 앱 러닝의 원본 경로는 아래 설명대로 Supabase에 저장됩니다.</p><p>D1의 챌린지 기록은 앱 계정 삭제와 별개이며 자동 만료가 설정되어 있지 않습니다. 연락처로 지갑 소유를 확인하여 삭제를 요청할 수 있습니다. 테스트넷 거래의 지갑 주소·보상·증명 요약은 공개되며 운영자가 지울 수 없습니다. 지갑 개인키는 수집하지 않습니다.</p></div>
 
 <div class="note">
   <p><strong>한 줄 요약.</strong> StepUp은 로그인한 이용자의 러닝 기록(GPS 경로 포함)과 커뮤니티 활동을
@@ -37,19 +38,17 @@
   다른 이용자와 함께 쓰기 위해서입니다. 광고는 없고 광고 식별자는 수집하지 않습니다.</p>
   <p>계정은 <strong>앱 안(내 정보 › 설정 › 연결된 계정 › 계정 삭제)</strong> 또는
   <a href="delete-account">계정 삭제 요청 페이지</a>에서 언제든 지울 수 있습니다.</p>
-  <p>홈페이지 사전 등록은 앱 계정과 별개입니다. 입력한 이메일과 공유 게시물 주소는 출시 안내와 향후 사전 등록 혜택 확인에 사용합니다. 이메일 소유권은 추후 구글 로그인으로 확인합니다.</p>
 </div>
 
 <h2>1. 적용 범위</h2>
 <p>이 방침은 안드로이드 앱 <strong>StepUp</strong>(패키지명 <code>com.stepup.android</code>)과
-웹사이트 <code>stepupcrew.com</code>에 적용됩니다. 앱에서 링크로 이동하는 외부 서비스(구글 지도 등)에는
+웹사이트 <code>stepup-monad.gana003.workers.dev</code>에 적용됩니다. 앱에서 링크로 이동하는 외부 서비스(구글 지도 등)에는
 각 서비스의 방침이 적용됩니다.</p>
 
 <h2>2. 수집하는 정보와 목적</h2>
 <table>
   <tr><th>항목</th><th>언제·어떻게</th><th>목적</th><th>보관 위치</th></tr>
   <tr><td><strong>계정</strong></td><td>구글 로그인 시 이메일·이름·구글 계정 식별자</td><td>로그인, 프로필 이름 표시</td><td>서버</td></tr>
-  <tr><td><strong>홈페이지 사전 등록</strong></td><td>직접 입력한 이메일, 동의·등록 시각, 선택적으로 제출한 X·인스타그램·스레드 게시물 및 유튜브·틱톡·릴스 영상 주소, 공유 링크용 추천 코드와 다른 등록자의 추천 링크로 등록한 경우 그 추천 관계</td><td>출시 안내, 같은 이메일로 구글 로그인한 계정의 사전 등록·공유·크리에이터 혜택 대상 확인</td><td>서버</td></tr>
   <tr><td><strong>걸음 수</strong></td><td>기기 걸음 센서(신체 활동 권한). 서버에는 최근 30일의 일별 합계만</td><td>일일 목표, 적립, 주간 도전 확인</td><td>기기 · 서버</td></tr>
   <tr><td><strong>러닝 기록</strong></td><td>러닝을 마칠 때. 시작·종료 시각, 시간, 걸음, <strong>GPS 경로(좌표와 시각)</strong></td><td>거리·속도 계산, 부정 적립 판정, 적립액 계산, 랭킹·코스 기록·땅따먹기</td><td>기기 · 서버</td></tr>
   <tr><td><strong>위치</strong></td><td>러닝 중에만(위치 권한). 번개러닝 글을 쓸 때의 모임 위치. 파티런 로비·러닝 중 같은 방 사람에게 보이는 현재 위치</td><td>경로 기록, 모임 장소 표시, 함께 달리기</td><td>기기 · 서버</td></tr>
@@ -78,17 +77,16 @@
 <p>서비스 운영을 위해 아래 업체에 처리를 맡깁니다. 저장·전송은 모두 암호화(HTTPS)됩니다.</p>
 <table>
   <tr><th>업체</th><th>맡기는 일</th><th>항목</th></tr>
-  <tr><td>Supabase, Inc. (미국 법인 · 서버는 <strong>싱가포르</strong>, AWS ap-southeast-1)</td><td>서버 데이터베이스·로그인·서버 함수</td><td>2장의 서버 보관 항목 전부</td></tr>
+  <tr><td>Supabase, Inc. (미국 법인 · 서버는 <strong>대한민국 서울</strong>, AWS ap-northeast-2)</td><td>서버 데이터베이스·로그인·서버 함수</td><td>2장의 서버 보관 항목 전부</td></tr>
   <tr><td>Google LLC (미국)</td><td>구글 로그인, Firebase 푸시(FCM), Firebase Analytics</td><td>계정, 푸시 토큰, 이용 통계</td></tr>
   <tr><td>MapTiler AG (스위스)</td><td>지도 이미지 제공</td><td>보고 있는 지도 영역, IP 주소</td></tr>
-  <tr><td>Cloudflare, Inc. (미국)</td><td>웹사이트(stepupcrew.com) 호스팅</td><td>웹사이트 접속 기록</td></tr>
+  <tr><td>Cloudflare, Inc. (미국)</td><td>Monad 웹사이트 호스팅 · 챌린지 검증 · D1 저장</td><td>접속 기록, 지갑 주소, 챌린지 세션 · 서명 증명</td></tr>
 </table>
-<p>StepUp 서버의 데이터는 <strong>싱가포르</strong>에 저장됩니다. Google·MapTiler·Cloudflare의 서버는 한국 밖에 있을 수 있습니다. 보유 기간은 아래 4장과 같습니다. 사전 등록을 원하지 않으면 5장의 연락처로 철회·삭제를 요청할 수 있습니다.</p>
+<p>StepUp 서버의 데이터는 <strong>대한민국 서울</strong>에 저장됩니다. Google·MapTiler·Cloudflare의 서버는 한국 밖에 있을 수 있습니다. 보유 기간은 아래 4장과 같습니다. 문의·삭제 요청은 5장의 연락처를 이용할 수 있습니다.</p>
 
 <h2>4. 보관 기간과 파기</h2>
 <ul>
-  <li>홈페이지 사전 등록 이메일과 공유 게시물 주소는 신청을 철회하면 삭제하며, 앱 출시 후 <strong>90일 이내</strong>에 삭제합니다.</li>
-  <li>서버의 정보는 <strong>계정을 삭제할 때까지</strong> 보관하고, 삭제하면 지체 없이 지웁니다.
+  <li>Supabase 계정 정보는 <strong>계정을 삭제할 때까지</strong> 보관하고, 삭제하면 지체 없이 지웁니다.
       크루장이 계정을 지우면 크루장 자리는 가장 오래된 크루원에게 넘어갑니다.</li>
   <li>다른 이용자와의 거래 기록은 상대방 기록에서 내 계정 정보만 지워지고 거래 사실은 남습니다.</li>
   <li>푸시 토큰은 앱을 지우거나 토큰이 바뀌면 삭제합니다.</li>
@@ -98,7 +96,6 @@
 
 <h2>5. 이용자의 권리</h2>
 <ul>
-  <li><strong>사전 등록 철회·삭제</strong> — <a href="mailto:stepupofficial@stepupcrew.com?subject=StepUp%20%EC%82%AC%EC%A0%84%20%EB%93%B1%EB%A1%9D%20%EC%82%AD%EC%A0%9C">stepupofficial@stepupcrew.com</a>으로 요청</li>
   <li><strong>열람</strong> — 앱 안의 기록·프로필·지갑 화면</li>
   <li><strong>삭제</strong> — 앱에서 <em>내 정보 › 설정 › 연결된 계정 › 계정 삭제</em>, 또는
       <a href="delete-account">계정 삭제 요청 페이지</a></li>
@@ -125,8 +122,9 @@
 <hr style="border:0;border-top:1px solid var(--edge);margin:64px 0 0">
 
 <section id="en">
+<div class="note"><p><strong>Monad Testnet edition.</strong> This deployment uses a separate Supabase project and has no waitlist. Browser GPS coordinates are processed in memory for verification and are not stored in D1. D1 stores wallet addresses, challenge/session IDs, timestamps, distance, duration and signed proofs. Native run routes are stored in Supabase as described below.</p><p>D1 challenge records are separate from app account deletion and have no automatic expiry configured. Contact support to request deletion with proof of wallet ownership. Testnet transactions expose wallet addresses, rewards and proof summaries publicly; the operator cannot erase them. Wallet private keys are never collected.</p></div>
 <h2 style="margin-top:44px">Privacy Policy (English)</h2>
-<p style="color:var(--slate);font-size:13.5px">StepUp app and website · Effective 2026-09-30.
+<p style="color:var(--slate);font-size:13.5px">StepUp app and website · Effective 2026-10-11.
 The Korean text above is authoritative; this is a translation for convenience.</p>
 
 <div class="note">
@@ -135,14 +133,12 @@ The Korean text above is authoritative; this is a translation for convenience.</
   courses and the territory game can be shared with other runners. No ads, and no advertising ID.</p>
   <p>You can delete your account any time <strong>in the app (Profile › Settings › Connected accounts › Delete account)</strong>
   or on the <a href="delete-account">account deletion page</a>.</p>
-  <p>Website waitlist registration is separate from an app account. The submitted email and optional social post URLs are used for launch notices and later eligibility checks. Email ownership is checked through Google sign-in later.</p>
 </div>
 
 <h3>1. What we collect and why</h3>
 <table>
   <tr><th>Data</th><th>When / how</th><th>Purpose</th><th>Stored</th></tr>
   <tr><td><strong>Account</strong></td><td>Google sign-in: email, name, Google account ID</td><td>Sign-in, display name</td><td>Server</td></tr>
-  <tr><td><strong>Website waitlist</strong></td><td>Email you enter; consent and registration times; optional X, Instagram and Threads post URLs, and YouTube, TikTok and Reels video URLs; a referral code for your share link, and who referred you if you registered through another registrant's link</td><td>Launch notices and registration, sharing and creator bonus eligibility checks when the same email signs in with Google</td><td>Server</td></tr>
   <tr><td><strong>Steps</strong></td><td>Device step sensor; the server gets daily totals for the last 30 days</td><td>Goals, rewards, weekly challenge</td><td>Device · Server</td></tr>
   <tr><td><strong>Runs</strong></td><td>When a run ends: times, duration, steps and <strong>GPS route (coordinates with timestamps)</strong></td><td>Distance/speed, fraud checks, rewards, rankings, course records, territory</td><td>Device · Server</td></tr>
   <tr><td><strong>Location</strong></td><td>Only during a run; the meeting point of a flash run you post; your live position inside a party-run room</td><td>Route recording, meeting points, running together</td><td>Device · Server</td></tr>
@@ -158,13 +154,12 @@ meeting points; <strong>routes of courses you share</strong>; crew territory cel
 routes); live positions inside the same party-run room.</p>
 
 <h3>2. Processors and international transfer</h3>
-<p>Supabase, Inc. (USA; StepUp data is stored in <strong>Singapore</strong>, AWS ap-southeast-1) — server database, sign-in and server functions; Google LLC (USA) — Google sign-in, Firebase
+<p>Supabase, Inc. (USA; StepUp data is stored in <strong>Seoul, South Korea</strong>, AWS ap-northeast-2) — server database, sign-in and server functions; Google LLC (USA) — Google sign-in, Firebase
 Cloud Messaging, Firebase Analytics; MapTiler AG (Switzerland) — map images (the map area you view and your IP address);
-Cloudflare, Inc. (USA) — website hosting. These servers may be outside Korea. All traffic is encrypted (HTTPS).</p>
+Cloudflare, Inc. (USA) — website hosting, challenge verification and D1 session storage. These servers may be outside Korea. All traffic is encrypted (HTTPS).</p>
 
 <h3>3. Retention and deletion</h3>
-<p>Waitlist email and social post URL data is deleted when you withdraw your request, and within <strong>90 days after the app launches</strong>. Request waitlist removal at <a href="mailto:stepupofficial@stepupcrew.com">stepupofficial@stepupcrew.com</a>.</p>
-<p>Server data is kept <strong>until you delete your account</strong> and is deleted promptly when you do. If a crew owner
+<p>Supabase account data is kept <strong>until you delete your account</strong> and is deleted promptly when you do. If a crew owner
 deletes their account, the longest-standing member becomes owner. Trade records keep the fact of the trade but drop your
 account from them. Analytics data follows Google Analytics retention (2 months by default). On-device data is removed when
 you uninstall the app.</p>
