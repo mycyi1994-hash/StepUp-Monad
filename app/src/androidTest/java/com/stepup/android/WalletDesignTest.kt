@@ -99,16 +99,16 @@ class WalletDesignTest {
             awaitTag("wl-list")
             awaitTag("wl-balance")
             // 잔액 — 이 기기 원장 전체의 합(예시 숫자가 아니다)
-            compose.onNodeWithTag("wl-balance").assertTextContains(amountText(balance, signed = false))
-            compose.onNodeWithTag("wl-filter-all").assertIsSelected()
+            node("wl-balance").assertTextContains(amountText(balance, signed = false))
+            node("wl-filter-all").assertIsSelected()
             scrollToRow("wl-row-$newestId")
-            compose.onNodeWithTag("wl-list").performScrollToIndex(0)
+            node("wl-list").performScrollToIndex(0)
             shot("01-in-app-wallet")
 
             // 04 — 사용: 첫 쪽 밖의 사용 내역도 찾는다. 잔액은 그대로
             tap("wl-filter-spent")
-            compose.onNodeWithTag("wl-filter-spent").assertIsSelected()
-            compose.onNodeWithTag("wl-balance").assertTextContains(amountText(balance, signed = false))
+            node("wl-filter-spent").assertIsSelected()
+            node("wl-balance").assertTextContains(amountText(balance, signed = false))
             scrollToRow("wl-row-$spendId")
             compose.onAllNodesWithTag("wl-row-$newestId").assertCountEquals(0)
             shot("04-in-app-spent")
@@ -116,19 +116,19 @@ class WalletDesignTest {
             // 06 — 줄을 누르면 그 원장 줄의 금액 · 구분 · 내용. 닫으면 거르개 그대로
             tap("wl-row-$spendId")
             awaitTag("wl-entry-sheet")
-            compose.onNodeWithTag("wl-entry-amount", useUnmergedTree = false).assertTextContains("−20.00")
-            compose.onNodeWithTag("wl-entry-note").assertTextEquals("$MARK 신발 강화")
+            node("wl-entry-amount", useUnmergedTree = false).assertTextContains("−20.00")
+            node("wl-entry-note").assertTextEquals("$MARK 신발 강화")
             shot("06-in-app-spent-detail")
             tap("wl-entry-ok")
             awaitGone("wl-entry-sheet")
-            compose.onNodeWithTag("wl-filter-spent").assertIsSelected()
+            node("wl-filter-spent").assertIsSelected()
 
             // 03 — 적립: 양수만
-            compose.onNodeWithTag("wl-list").performScrollToIndex(0)
+            node("wl-list").performScrollToIndex(0)
             tap("wl-filter-earned")
             scrollToRow("wl-row-$newestId")
             compose.onAllNodesWithTag("wl-row-$spendId").assertCountEquals(0)
-            compose.onNodeWithTag("wl-list").performScrollToIndex(0)
+            node("wl-list").performScrollToIndex(0)
             shot("03-in-app-earned")
 
             // 13 — SUP 안내, 뒤로 가기는 시트만 닫는다
@@ -137,10 +137,10 @@ class WalletDesignTest {
             shot("13-in-app-info")
             back()
             awaitGone("wl-info-sheet")
-            compose.onNodeWithTag("wl-filter-earned").assertIsSelected()
+            node("wl-filter-earned").assertIsSelected()
 
             // 전체 — 아래로 읽으면 다음 쪽을 이어 읽어 첫 쪽(30줄) 밖의 사용 내역까지 간다
-            compose.onNodeWithTag("wl-list").performScrollToIndex(0)
+            node("wl-list").performScrollToIndex(0)
             tap("wl-filter-all")
             scrollToRow("wl-row-$newestId")
             scrollToRow("wl-row-$spendId")
@@ -194,51 +194,51 @@ class WalletDesignTest {
         }
 
         show("s01-wallet-unlinked", "wl-row-7", wallet())
-        compose.onNodeWithTag("wl-balance").assertTextContains("83.07")
-        compose.onNodeWithTag("wl-earned").assertTextContains("103.07")
-        compose.onNodeWithTag("wl-spent").assertTextContains("20.00")
-        compose.onNodeWithTag("wl-web3").assertHasClickAction()
+        node("wl-balance").assertTextContains("83.07")
+        node("wl-earned").assertTextContains("103.07")
+        node("wl-spent").assertTextContains("20.00")
+        node("wl-web3").assertHasClickAction()
         show("s02-wallet-linked", "wl-row-7", wallet(web3 = Web3State.Linked))
         show("s03-earned-filter", "wl-row-7", wallet(history = earned, web3 = Web3State.Linked))
-        compose.onNodeWithTag("wl-filter-earned").assertIsSelected()
-        compose.onNodeWithTag("wl-filter-all").assertIsNotSelected()
+        node("wl-filter-earned").assertIsSelected()
+        node("wl-filter-all").assertIsNotSelected()
         show("s04-spent-filter", "wl-row-4", wallet(history = spent, web3 = Web3State.Linked))
         show("s05-earned-detail", "wl-entry-sheet", wallet(entry = SAMPLE.first()))
-        compose.onNodeWithTag("wl-entry-amount").assertTextContains("+3.50")
+        node("wl-entry-amount").assertTextContains("+3.50")
         show("s06-spent-detail", "wl-entry-sheet", wallet(history = spent, entry = SAMPLE.first { it.amount < 0 }))
-        compose.onNodeWithTag("wl-entry-amount").assertTextContains("−20.00")
+        node("wl-entry-amount").assertTextContains("−20.00")
         show("s07-first-empty", "wl-empty", wallet(totals = TotalsLoad.Ready(RewardTotals(0.0, 0.0, 0.0)),
             history = HistoryLoad.Ready(LedgerFilter.ALL, emptyList(), more = false)))
-        compose.onNodeWithTag("wl-balance").assertTextContains("0.00")
+        node("wl-balance").assertTextContains("0.00")
         show("s08-no-spend-history", "wl-empty-filtered", wallet(totals = TotalsLoad.Ready(RewardTotals(103.07, 103.07, 0.0)),
             history = HistoryLoad.Ready(LedgerFilter.SPENT, emptyList(), more = false), web3 = Web3State.Linked))
-        compose.onNodeWithTag("wl-state-action").assertHasClickAction()
+        node("wl-state-action").assertHasClickAction()
         show("s09-wallet-loading", "wl-history-loading", wallet(totals = TotalsLoad.Loading, history = HistoryLoad.Loading, web3 = Web3State.Checking))
-        compose.onNodeWithTag("wl-balance-loading").assertExists()
+        node("wl-balance-loading").assertExists()
         compose.onAllNodesWithTag("wl-balance").assertCountEquals(0)
         show("s10-wallet-error", "wl-failed", wallet(totals = TotalsLoad.Failed, history = HistoryLoad.Failed))
         compose.onAllNodesWithTag("wl-balance").assertCountEquals(0)
         show("s11-history-error", "wl-history-failed", wallet(history = HistoryLoad.Failed))
-        compose.onNodeWithTag("wl-balance").assertTextContains("83.07")
+        node("wl-balance").assertTextContains("83.07")
         show("s12-connection-unavailable", "wl-web3", wallet(web3 = Web3State.Unavailable))
-        compose.onNodeWithTag("wl-web3").assertHasNoClickAction()
+        node("wl-web3").assertHasNoClickAction()
         show("s13-sup-info", "wl-info-sheet", wallet(sheet = "Info"))
         show("s14-connected-sheet", "wl-linked-sheet", wallet(web3 = Web3State.Linked, sheet = "Linked"))
-        compose.onNodeWithTag("wl-open-draw").assertHasClickAction()
-        compose.onNodeWithTag("wl-open-wallet-page").assertHasClickAction()
+        node("wl-open-draw").assertHasClickAction()
+        node("wl-open-wallet-page").assertHasClickAction()
         // 16 — 다음 쪽을 읽지 못했다: 읽은 줄 · 자리는 그대로, 아래에서 다시
         val older = wallet(history = HistoryLoad.Ready(LedgerFilter.ALL, SAMPLE + OLDER, more = true, pageFailed = true))
         compose.runOnIdle { scene = { key("s16") { older() } } }
         awaitTag("wl-row-7")
-        compose.onNodeWithTag("wl-list").performScrollToNode(hasTestTag("wl-page-failed"))
-        compose.onNodeWithTag("wl-page-retry").assertHasClickAction()
+        node("wl-list").performScrollToNode(hasTestTag("wl-page-failed"))
+        node("wl-page-retry").assertHasClickAction()
         shot("s16-older-history-error")
         // 연결 혜택(기존 뽑기 전달본 06) — 숫자는 서버가 준 것만
         show("s17-benefit-sheet", "wl-benefit-sheet", wallet(sheet = "Benefit"))
-        compose.onNodeWithTag("wl-connect").assertHasClickAction()
+        node("wl-connect").assertHasClickAction()
         show("s18-web3-unknown", "wl-web3-retry", wallet(web3 = Web3State.Unknown))
         show("s19-signed-out", "wl-web3", wallet(web3 = Web3State.SignedOut))
-        compose.onNodeWithTag("wl-web3").assertHasNoClickAction()
+        node("wl-web3").assertHasNoClickAction()
         show("s20-stale-history", "wl-stale", wallet(history = all.copy(stale = true)))
 
         compose.runOnIdle { light = true }
@@ -259,12 +259,13 @@ class WalletDesignTest {
     private fun show(name: String, readyTag: String, content: @Composable () -> Unit) {
         compose.runOnIdle { scene = { key(name) { content() } } }
         awaitTag(readyTag)
+        if (readyTag.startsWith("wl-row-")) node("wl-list").performScrollToIndex(0)
         shot(name)
     }
 
     private fun tap(tag: String) {
         awaitTag(tag)
-        val node = compose.onNodeWithTag(tag)
+        val node = node(tag)
         runCatching { node.performScrollTo() }
         node.performClick()
         compose.waitForIdle()
@@ -275,7 +276,7 @@ class WalletDesignTest {
         var found = false
         repeat(20) {
             if (!found) {
-                found = runCatching { compose.onNodeWithTag("wl-list").performScrollToNode(hasTestTag(tag)) }.isSuccess
+                found = runCatching { node("wl-list").performScrollToNode(hasTestTag(tag)) }.isSuccess
                 if (!found) {
                     compose.waitForIdle()
                     Thread.sleep(300)
@@ -305,7 +306,23 @@ class WalletDesignTest {
         }
     }
 
+    // LazyColumn does not compose every row above the fold on a small device.
+    // Scroll to the requested semantic node before checking it; keep all assertions.
+    private fun reveal(tag: String) {
+        if (!tag.startsWith("wl-") || tag.contains("sheet")) return
+        if (compose.onAllNodesWithTag(tag, useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty()) return
+        if (compose.onAllNodesWithTag("wl-list").fetchSemanticsNodes().isEmpty()) return
+        runCatching { compose.onNodeWithTag("wl-list").performScrollToNode(hasTestTag(tag)) }
+    }
+
+    private fun node(tag: String, useUnmergedTree: Boolean = false): SemanticsNodeInteraction {
+        reveal(tag)
+        return compose.onNodeWithTag(tag, useUnmergedTree = useUnmergedTree)
+    }
+
     private fun awaitTag(tag: String) {
+        compose.waitForIdle()
+        reveal(tag)
         compose.waitUntil(10_000) { compose.onAllNodesWithTag(tag, useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
     }
 
