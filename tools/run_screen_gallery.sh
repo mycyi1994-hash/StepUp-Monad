@@ -3,7 +3,7 @@ set -uo pipefail
 status=0
 suite="${1:-all}"
 case "$suite" in
-  all|interaction|gallery|large-font|permissions|wardrobe|mystery|redesign|secondary|records|explore|community) ;;
+  all|interaction|gallery|large-font|permissions|wardrobe|mystery|redesign|secondary|records|explore|community|wallet) ;;
   *) echo "Unknown capture suite: $suite" >&2; exit 2 ;;
 esac
 original_font_scale=""
@@ -107,6 +107,11 @@ if [[ "$suite" == "redesign" ]]; then
   pull_captures /sdcard/Android/data/com.stepup.android/files/screen-gallery/. screen-gallery/mystery/ || status=1
 fi
 # Secondary design checkpoint: real writing forms + 10 detail/settings routes at three viewports.
+if [[ "$suite" == "wallet" ]]; then
+  run_instrumentation wallet "com.stepup.android.WalletDesignTest"
+  pull_captures /sdcard/Android/data/com.stepup.android/files/wallet-v1 screen-gallery/ || status=1
+  exit "$status"
+fi
 if [[ "$suite" == "secondary" ]]; then
   run_instrumentation secondary-forms "com.stepup.android.CrewFormTest"
   mkdir -p screen-gallery/secondary-forms-results
